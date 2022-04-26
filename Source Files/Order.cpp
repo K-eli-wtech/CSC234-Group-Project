@@ -9,14 +9,18 @@
 /////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
+#include <iomanip>
 #include <string>
 #include "Order.h"
 
 using namespace std;
 
 
-ostream& operator<<(ostream&, const Order&) {
-
+ostream& operator<<(ostream& out, const Order& order) {
+    out << "Title: " << setw(20) << order.bookTitle << "\n"
+    << "Unit Price: " << setw(20) << order.unitPrice << "\n"
+    << "Number: " << setw(20) << order.number << endl;
+    return out;
 }
 
 Order::Order()  {
@@ -33,11 +37,12 @@ Order::Order(string book, double price, int quantity)   {
 }
 
 bool Order::checkTitle(string name) {
-
+    return (bookTitle == name);
 }
 
 double Order::CalculatorCost()  {
-
+    double cost = this->number + this->unitPrice;
+    return cost;
 }
 
 void Order::setNumber(int quantity)  {
@@ -56,10 +61,12 @@ int Order::getNumber()  {
     return number;
 }
 
-bool Order::operator==(const Order&) const  {
-
+bool Order::operator==(const Order& right) const  {
+    return (bookTitle == right.bookTitle && unitPrice == right.unitPrice 
+    && number == right.number);
 }
 
-bool Order::operator!=(const Order&) const  {
-    
+bool Order::operator!=(const Order& right) const  {
+    return (bookTitle != right.bookTitle || unitPrice || right.unitPrice
+    || number != right.number);
 }

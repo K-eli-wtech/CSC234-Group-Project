@@ -16,20 +16,20 @@
 
 using namespace std;
 
-ostream& operator<<(ostream&, const OrderList&) {
+ostream& operator<<(ostream& out, const OrderList& oList) {
 
 }
 
-void OrderList::AddOrder(Order&)    {
+void OrderList::AddOrder(Order& order)    {
+    insertLast(order);
+}
+
+void OrderList::UpdateOrder(string title, int number)    {
 
 }
 
-void OrderList::UpdateOrder(string, int)    {
-
-}
-
-void OrderList::CancelOrder(string) {
-
+void OrderList::CancelOrder(string title) {
+    
 }
 
 double OrderList::CalculateSubtotal()   {
