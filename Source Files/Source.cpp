@@ -1,3 +1,14 @@
+///////////////////////////////////////////////////////////////////////
+//                                                                     
+// Filename: Source.cpp
+// Date: April 24, 2022
+// Programmer: Paul Garland, Justin Bester, Kaleb White
+//
+// Description:
+//  The main file for the program that has to do with the operations of the Wake Bookstore
+//  which showcases linked lists and working together for a group project.
+/////////////////////////////////////////////////////////////////////////
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>

@@ -37,7 +37,7 @@ using namespace std;
 // UpdateOrders
 // CancleOrders
 // getCustomerName
-// getAddresses
+// getAddress
 // getEmail
 // checkoutOrders
 // overloaded == op
