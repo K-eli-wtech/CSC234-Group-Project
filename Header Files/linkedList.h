@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////
+//                                                                     
+// Filename: linkedList.h
+// Date: April 24, 2022
+// Programmer: Paul Garland, Justin Bester, Kaleb White
+//
+// Description:
+//  The specification file for the class linkedList
+/////////////////////////////////////////////////////////////////////////
+
 #ifndef LINKEDLIST_H
 #define LINKEDLIST_H
 #include <iostream>

@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////
+//                                                                     
+// Filename: Customer.h
+// Date: April 24, 2022
+// Programmer: Paul Garland, Justin Bester, Kaleb White
+//
+// Description:
+//  The specification file for the class Customer
+/////////////////////////////////////////////////////////////////////////
+
 #ifndef Customer_H
 #define Customer_H
 
@@ -6,6 +16,34 @@
 #include "OrderList.h"
 
 using namespace std;
+
+//////////
+//
+// Class: Customer
+// 
+// Description: 
+// 
+// Data Members:
+// output op
+// name
+// address
+// email
+// orders
+// 
+// Member Functions:
+// Customer (2)
+// getOrders
+// AddOrder
+// UpdateOrders
+// CancleOrders
+// getCustomerName
+// getAddresses
+// getEmail
+// checkoutOrders
+// overloaded == op
+// overloaded != op
+//
+//////////
 
 class Customer  {
         friend ostream& operator<<(ostream&, const Customer&);
@@ -23,7 +61,7 @@ class Customer  {
         void UpdateOrders(string, int);
         void CancelOrder(string);
         string getCustomerName();
-        string getAddesress();
+        string getAddresses();
         string getEmail();
         double checkoutOrders();
         bool operator==(const Customer&) const;

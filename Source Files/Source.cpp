@@ -27,6 +27,7 @@ int main()  {
         cin >> subFile;
         inFile.open(subFile);
     }
+
     int choice = selectMenu();
 
     switch (choice)
@@ -56,7 +57,7 @@ int main()  {
     return 0;
 }
 
-void LoadCustomers(ifstream&, CustomerList&)    {
+void LoadCustomers(ifstream&, CustomerList&) {
     if () {
         cout << "All customers and orders are loaded." << endl;
     }

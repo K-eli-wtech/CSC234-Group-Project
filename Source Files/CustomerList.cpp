@@ -6,22 +6,26 @@
 
 using namespace std;
 
-ostream& operator<<(ostream&, const CustomerList&)  {
+ostream& operator << (ostream&, const CustomerList&)  {
 
 }
 
 void CustomerList::AddCustomer(Customer&)   {
 
 }
+
 bool CustomerList::SearchCustomerByName(string) const {
 
 }
+
 Customer getCustomerByName(string)  {
     
 }
+
 void CustomerList::UpdateCustomer(Customer&){
 
 }
+
 void CustomerList::UpdateDataFile(ofstream&)    {
 
 }

@@ -1,3 +1,13 @@
+///////////////////////////////////////////////////////////////////////
+//                                                                     
+// Filename: OrderList.h
+// Date: April 24, 2022
+// Programmer: Paul Garland, Justin Bester, Kaleb White
+//
+// Description:
+//  The specification file for the class OrderList
+/////////////////////////////////////////////////////////////////////////
+
 #ifndef OrderList_H
 #define OrderList_H
 
@@ -7,6 +17,25 @@
 #include "Order.h"
 
 using namespace std;
+
+//////////
+//
+// Class: OrderList
+// 
+// Description: 
+// 
+// Data Members:
+// output op
+// 
+// Member Functions:
+// AddOrder
+// UpdateOrder
+// CancelOrder
+// CalculateSubtotal
+// UpdateDataFile
+// SearchOrderList
+//
+//////////
 
 class OrderList: public linkedListType<Order>   {
         friend ostream& operator<<(ostream&, const OrderList&);
