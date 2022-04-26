@@ -11,10 +11,16 @@ ostream& operator<<(ostream&, const Customer&)  {
 }
 
 Customer::Customer()    {
+    string name = "";
+    string address = "";
+    string email = "";
 
 }
 
-Customer::Customer(string, string, string, OrderList)   {
+Customer::Customer(string name, string address, string email, OrderList)   {
+    this->name;
+    this->address;
+    this->email;
 
 }
 
@@ -35,15 +41,15 @@ void Customer::CancelOrder(string)  {
 }
 
 string Customer::getCustomerName()  {
-
+    return name;
 }
 
-string Customer::getAddesress() {
-
+string Customer::getAddress() {
+    return address;
 }
 
 string Customer::getEmail() {
-
+    return email;
 }
 
 double Customer::checkoutOrders()   {

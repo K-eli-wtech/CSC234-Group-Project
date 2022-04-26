@@ -61,7 +61,7 @@ class Customer  {
         void UpdateOrders(string, int);
         void CancelOrder(string);
         string getCustomerName();
-        string getAddresses();
+        string getAddress();
         string getEmail();
         double checkoutOrders();
         bool operator==(const Customer&) const;
