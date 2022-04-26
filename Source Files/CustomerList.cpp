@@ -16,8 +16,12 @@
 
 using namespace std;
 
-ostream& operator << (ostream&, const CustomerList&)  {
-
+ostream& operator<<(ostream& out, const CustomerList& customers)  {
+	linkedListIterator i = linkedListIterator(customers.first);
+	for (;i!=nullptr;i++)
+	{
+		out << *i;
+	}
 }
 
 void CustomerList::AddCustomer(Customer&)   {

@@ -16,8 +16,13 @@
 using namespace std;
 
 
-ostream& operator<<(ostream&, const Customer&)  {
-
+ostream& operator<<(ostream& out, const Customer& customer)  {
+	out << "***************************************************************************************************\n";
+	out << "Name:      " << customer.name << '\n';
+	out << "Address:   " << customer.address << '\n';
+	cout << "Email:    " << customer.email << '\n';
+	"------------ Book Orders -------------";
+	/* Iterate thru & print off book orders */
 }
 
 Customer::Customer()    {
@@ -27,10 +32,10 @@ Customer::Customer()    {
 
 }
 
-Customer::Customer(string name, string address, string email, OrderList)   {
-    this->name;
-    this->address;
-    this->email;
+Customer::Customer(string _name, string _address, string _email, OrderList)   {
+    name = _name;
+    address = _address;
+    email = _email;
 
 }
 
