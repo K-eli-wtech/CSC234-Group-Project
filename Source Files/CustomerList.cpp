@@ -9,6 +9,7 @@
 /////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "linkedList.h"
 #include "Customer.h"
@@ -23,6 +24,7 @@ ostream& operator<<(ostream& out, const CustomerList& customers)
 	{
 		out << *i;
 	}
+	return out;
 }
 
 void CustomerList::AddCustomer(Customer& customer)
@@ -66,7 +68,14 @@ void CustomerList::UpdateCustomer(Customer& updated)
 	/* Throw error if customer doesn't exist? Add to list? */
 }
 
-void CustomerList::UpdateDataFile(ofstream&)
+void CustomerList::UpdateDataFile(ofstream& out)
 {
-
+	linkedListIterator<Customer> i = linkedListIterator<Customer>(this->first);
+	for (;i!=nullptr;++i)
+	{
+		out << '%' << (*i).getCustomerName() << '\n';
+		out << (*i).getAddress() << '\n';
+		out << (*i).getEmail() << '\n';
+		(*i).getOrders().UpdateDataFile(out);
+	}
 }
