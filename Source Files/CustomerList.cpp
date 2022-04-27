@@ -16,7 +16,8 @@
 
 using namespace std;
 
-ostream& operator<<(ostream& out, const CustomerList& customers)  {
+ostream& operator<<(ostream& out, const CustomerList& customers)
+{
 	linkedListIterator<Customer> i = linkedListIterator<Customer>(customers.first);
 	for (;i!=nullptr;++i)
 	{
@@ -24,24 +25,29 @@ ostream& operator<<(ostream& out, const CustomerList& customers)  {
 	}
 }
 
-void CustomerList::AddCustomer(Customer& customer)   {
+void CustomerList::AddCustomer(Customer& customer)
+{
 	linkedListType::insertLast(customer);
 }
 
-bool CustomerList::SearchCustomerByName(string name) const {
+bool CustomerList::SearchCustomerByName(string name) const
+{
 	OrderList empty;
 	Customer to_find = Customer(name,"","",empty);
 	return linkedListType::search(to_find);
 }
 
-Customer getCustomerByName(string)  {
-    
-}
-
-void CustomerList::UpdateCustomer(Customer&){
+Customer getCustomerByName(string)
+{
 
 }
 
-void CustomerList::UpdateDataFile(ofstream&)    {
+void CustomerList::UpdateCustomer(Customer&)
+{
+
+}
+
+void CustomerList::UpdateDataFile(ofstream&)
+{
 
 }

@@ -16,30 +16,37 @@
 
 using namespace std;
 
-ostream& operator<<(ostream& out, const OrderList& oList) {
+ostream& operator<<(ostream& out, const OrderList& oList)
+{
 
 }
 
-void OrderList::AddOrder(Order& order)    {
-    insertLast(order);
+void OrderList::AddOrder(Order& order)
+{
+	insertLast(order);
 }
 
-void OrderList::UpdateOrder(string title, int number)    {
-
-}
-
-void OrderList::CancelOrder(string title) {
-    
-}
-
-double OrderList::CalculateSubtotal()   {
+void OrderList::UpdateOrder(string title, int number)
+{
 
 }
 
-void OrderList::UpdateDataFile(ofstream&)   {
+void OrderList::CancelOrder(string title)
+{
 
 }
 
-void OrderList::SearchOrderList(string title, bool& found, nodeType<Order>*& current) const {
-    
+double OrderList::CalculateSubtotal()
+{
+
+}
+
+void OrderList::UpdateDataFile(ofstream&)
+{
+
+}
+
+void OrderList::SearchOrderList(string title, bool& found, nodeType<Order>*& current) const
+{
+
 }
