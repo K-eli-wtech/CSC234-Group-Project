@@ -24,8 +24,8 @@ ostream& operator<<(ostream& out, const CustomerList& customers)  {
 	}
 }
 
-void CustomerList::AddCustomer(Customer&)   {
-
+void CustomerList::AddCustomer(Customer& customer)   {
+	linkedListType::insertLast(customer);
 }
 
 bool CustomerList::SearchCustomerByName(string) const {
