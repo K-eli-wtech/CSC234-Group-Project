@@ -30,8 +30,8 @@ void CustomerList::AddCustomer(Customer& customer)   {
 
 bool CustomerList::SearchCustomerByName(string name) const {
 	OrderList empty;
-	Customer to_find = (name,"","",empty);
-	return linkedListType::search(to_find)
+	Customer to_find = Customer(name,"","",empty);
+	return linkedListType::search(to_find);
 }
 
 Customer getCustomerByName(string)  {

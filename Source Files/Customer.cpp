@@ -22,13 +22,14 @@ ostream& operator<<(ostream& out, const Customer& customer)  {
 	out << "Address:   " << customer.address << '\n';
 	cout << "Email:    " << customer.email << '\n';
 	"------------ Book Orders -------------";
-	cout << orders;
+	cout << customer.orders;
 }
 
 Customer::Customer()    {
     name = "";
     address = "";
     email = "";
+    orders = OrderList();
 }
 
 Customer::Customer(string _name, string _address, string _email, OrderList _orders)   {
@@ -39,7 +40,7 @@ Customer::Customer(string _name, string _address, string _email, OrderList _orde
 
 }
 
-OrderList getOrders()   {
+OrderList Customer::getOrders()   {
 	return orders;
 }
 
