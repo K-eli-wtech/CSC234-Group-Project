@@ -16,22 +16,24 @@
 
 using namespace std;
 
-ostream& operator<<(ostream& out, const OrderList& oList) {
-    Order i = oList.front();
-	while (i != nullptr)    {
-        out << i;
-        i = i->link;
-    }
+ostream& operator<<(ostream& out, const OrderList& orders) 
+{
+    linkedListIterator<Order> i = linkedListIterator<Order>(orders.first);
+	for (;i!=nullptr;++i)
+	{
+		out << *i;
+	}
+	return out;
 }
 
 void OrderList::AddOrder(Order& order)
 {
-	insertLast(order);
+	linkedListType::insertLast(order);
 }
 
 void OrderList::UpdateOrder(string title, int number)
 {
-
+    
 }
 
 void OrderList::CancelOrder(string title)
@@ -41,12 +43,25 @@ void OrderList::CancelOrder(string title)
 
 double OrderList::CalculateSubtotal()
 {
-
+	double subtotal;
+	linkedListIterator<Order> i = linkedListIterator<Order>(this->first);
+	for (;i!=nullptr;++i)
+	{
+		subtotal = subtotal + (*i).CalculatorCost();
+	}
+	return subtotal;
 }
 
-void OrderList::UpdateDataFile(ofstream&)
+void OrderList::UpdateDataFile(ofstream& out)
 {
-
+    linkedListIterator<Order> i = linkedListIterator<Order>(this->first);
+	for (;i!=nullptr;++i)
+	{
+		// Are yall getting errors here? Its saying that the '<<' operand has no matching operator
+		out << (*i).getTitle() << "\n";
+		out << (*i).getPrice() << "\n";
+		out << (*i).getNumber() << "\n";
+	}
 }
 
 void OrderList::SearchOrderList(string title, bool& found, nodeType<Order>*& current) const
