@@ -71,8 +71,10 @@ double Customer::checkoutOrders()   {
 
 }
 
-bool Customer::operator==(const Customer&) const    {
-
+bool Customer::operator==(const Customer& comp) const    {
+	/* Correct if this is wrong, but I believe this *
+	 * should return true if the names are equal    */
+	return name == comp.name;
 }
 
 bool Customer::operator!=(const Customer&) const    {
