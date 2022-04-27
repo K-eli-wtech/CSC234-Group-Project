@@ -93,25 +93,19 @@ int selectMenu()    {
 }
 
 void PlaceOrder(CustomerList&)  {
-    return true;
 }
 
 void UpdateOrder(CustomerList&) {
-    return true;
 }
 
 void CancelOrder(CustomerList&) {
-    return true;
 }
 
 void PrintOrders(CustomerList&) {
-    return true;
 }
 
 void CheckoutOrders(CustomerList&)  {
-    return true;
 }
 
 void UpdateDataFile(CustomerList&)  {
-    return true;
 }
