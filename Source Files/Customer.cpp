@@ -44,8 +44,8 @@ OrderList Customer::getOrders() {
     return this->orders;
 }
 
-void Customer::AddOrder(Order) {
-
+void Customer::AddOrder(Order order) {
+	this->orders.AddOrder(order);
 }
 
 void Customer::UpdateOrders(string, int) {
