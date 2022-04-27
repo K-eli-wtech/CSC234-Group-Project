@@ -50,6 +50,8 @@ Customer CustomerList::getCustomerByName(string name) const
 		}
 	}
 	/* Are we supposed to throw if not found? */
+	/* Paul: I think if it doesn't specify we should either have it send an error and recall the function or fail
+	   the program gracefully */ 
 }
 
 void CustomerList::UpdateCustomer(Customer& updated)
@@ -57,6 +59,7 @@ void CustomerList::UpdateCustomer(Customer& updated)
 	/* Assuming we're supposed to find the customer *
 	 * by name and update that record with what     *
 	 * we're passed in our argument.                */
+	// Paul: That was how I understood it
 	nodeType<Customer> * node;
 	for (node=this->first;node != nullptr;node=node->link)
 	{
