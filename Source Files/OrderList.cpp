@@ -34,12 +34,26 @@ void OrderList::AddOrder(Order& order)
 
 void OrderList::UpdateOrder(string title, int number)
 {
-    
+    nodeType<Order> *node;
+	for (node=this->first;node != nullptr;node=node->link)
+	{
+		if (node->info.getTitle() == title)	{
+			node->info.setNumber(number);
+		} else {
+			cout << "Title could not be found." << endl;
+		}
+	}
 }
 
 void OrderList::CancelOrder(string title)
 {
-	
+	nodeType<Order> *node;
+	for (node=this->first;node!=nullptr;node=node->link)
+	{
+		if (node->info.getTitle() == title)	{
+			linkedListType::deleteNode(node->info);
+		}
+	}
 }
 
 double OrderList::CalculateSubtotal()
