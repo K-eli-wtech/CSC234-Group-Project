@@ -44,8 +44,8 @@ OrderList Customer::getOrders()   {
 	return orders;
 }
 
-void Customer::AddOrder(Order)  {
-
+void Customer::AddOrder(Order order)  {
+	orders.AddOrder(order);
 }
 
 void Customer::UpdateOrders(string, int)    {
@@ -78,6 +78,7 @@ bool Customer::operator==(const Customer& comp) const    {
 	return name == comp.name;
 }
 
-bool Customer::operator!=(const Customer&) const    {
-
+bool Customer::operator!=(const Customer& comp) const    {
+	/* Same as == above, but != */
+	return name != comp.name;
 }
