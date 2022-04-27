@@ -17,7 +17,11 @@
 using namespace std;
 
 ostream& operator<<(ostream& out, const OrderList& oList) {
-
+    Order i = oList.front();
+	while (i != nullptr)    {
+        out << i;
+        i = i->link;
+    }
 }
 
 void OrderList::AddOrder(Order& order)    {
