@@ -17,8 +17,8 @@
 using namespace std;
 
 ostream& operator<<(ostream& out, const CustomerList& customers)  {
-	linkedListIterator i = linkedListIterator(customers.first);
-	for (;i!=nullptr;i++)
+	linkedListIterator<Customer> i = linkedListIterator<Customer>(customers.first);
+	for (;i!=nullptr;++i)
 	{
 		out << *i;
 	}
