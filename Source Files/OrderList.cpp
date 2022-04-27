@@ -9,6 +9,7 @@
 /////////////////////////////////////////////////////////////////////////
 
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "linkedList.h"
 #include "Order.h"
@@ -38,7 +39,7 @@ void OrderList::UpdateOrder(string title, int number)
 
 void OrderList::CancelOrder(string title)
 {
-
+	
 }
 
 double OrderList::CalculateSubtotal()
@@ -57,7 +58,6 @@ void OrderList::UpdateDataFile(ofstream& out)
     linkedListIterator<Order> i = linkedListIterator<Order>(this->first);
 	for (;i!=nullptr;++i)
 	{
-		// Are yall getting errors here? Its saying that the '<<' operand has no matching operator
 		out << (*i).getTitle() << "\n";
 		out << (*i).getPrice() << "\n";
 		out << (*i).getNumber() << "\n";
