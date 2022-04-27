@@ -50,9 +50,20 @@ Customer getCustomerByName(string name)
 	/* Are we supposed to throw if not found? */
 }
 
-void CustomerList::UpdateCustomer(Customer&)
+void CustomerList::UpdateCustomer(Customer& updated)
 {
-
+	/* Assuming we're supposed to find the customer *
+	 * by name and update that record with what     *
+	 * we're passed in our argument.                */
+	NodeType node;
+	for (node=this.first;node != nullptr;node=node->link)
+	{
+		if (node->info.name == updated.name) {
+			node.info = updated;
+			return;
+		}
+	}
+	/* Throw error if customer doesn't exist? Add to list? */
 }
 
 void CustomerList::UpdateDataFile(ofstream&)
