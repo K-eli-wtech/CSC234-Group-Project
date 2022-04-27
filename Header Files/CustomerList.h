@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//                                                                     
+//
 // Filename: CustomerList.h
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -21,12 +21,12 @@ using namespace std;
 //////////
 //
 // Class: CustomerList
-// 
-// Description: 
-// 
+//
+// Description:
+//
 // Data Members:
 // output op
-// 
+//
 // Member Functions:
 // AddCustomer
 // SearchCustomerByName
@@ -36,14 +36,15 @@ using namespace std;
 //
 //////////
 
-class CustomerList: public linkedListType<Customer> {
-            friend ostream& operator<<(ostream&, const CustomerList&);
-        public:
-            void AddCustomer(Customer&);
-            bool SearchCustomerByName(string) const;
-            Customer getCustomerByName(string) const;
-            void UpdateCustomer(Customer&);
-            void UpdateDataFile(ofstream&);
+class CustomerList: public linkedListType<Customer>
+{
+	friend ostream& operator<<(ostream&, const CustomerList&);
+	public:
+		void AddCustomer(Customer&);
+		bool SearchCustomerByName(string) const;
+		Customer getCustomerByName(string) const;
+		void UpdateCustomer(Customer&);
+		void UpdateDataFile(ofstream&);
 };
 
 #endif

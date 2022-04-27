@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//                                                                     
+//
 // Filename: OrderList.h
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -21,12 +21,12 @@ using namespace std;
 //////////
 //
 // Class: OrderList
-// 
-// Description: 
-// 
+//
+// Description:
+//
 // Data Members:
 // output op
-// 
+//
 // Member Functions:
 // AddOrder
 // UpdateOrder
@@ -37,17 +37,18 @@ using namespace std;
 //
 //////////
 
-class OrderList: public linkedListType<Order>   {
-        friend ostream& operator<<(ostream&, const OrderList&);
-    public:
-        void AddOrder(Order&);
-        void UpdateOrder(string, int);
-        void CancelOrder(string);
-        double CalculateSubtotal();
-        void UpdateDataFile(ofstream&);
+class OrderList: public linkedListType<Order>
+{
+	friend ostream& operator<<(ostream&, const OrderList&);
+	public:
+		void AddOrder(Order&);
+		void UpdateOrder(string, int);
+		void CancelOrder(string);
+		double CalculateSubtotal();
+		void UpdateDataFile(ofstream&);
 
-    private:
-        void SearchOrderList(string title, bool& found, nodeType<Order>*& current) const;
+	private:
+		void SearchOrderList(string title, bool& found, nodeType<Order>*& current) const;
 };
 
 #endif

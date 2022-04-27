@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//                                                                     
+//
 // Filename: Source.cpp
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -26,92 +26,104 @@ void PrintOrders(CustomerList&);
 void CheckoutOrders(CustomerList&);
 void UpdateDataFile(CustomerList&);
 
-int main()  {
-    cout << "Welcome to Wake Bookstore!" << endl;
+int main()
+{
+	cout << "Welcome to Wake Bookstore!" << endl;
 
-    ifstream inFile;
-    inFile.open("BookOrders.txt");
-    
-    if(!inFile) {
-        string subFile;
-        cout << "Failed to find the default file, please input file name." << endl;
-        cin >> subFile;
-        inFile.open(subFile);
-    }
+	ifstream inFile;
+	inFile.open("BookOrders.txt");
 
-    int choice = selectMenu();
+	if(!inFile)
+	{
+		string subFile;
+		cout << "Failed to find the default file, please input file name." << endl;
+		cin >> subFile;
+		inFile.open(subFile);
+	}
 
-    switch (choice)
-    {
-    case 1:
-        PlaceOrder();
-        break;
-    case 2:
-        UpdateOrder();
-        break;
-    case 3:
-        CancelOrder();
-        break;
-    case 4:
-        PrintOrders();
-        break;
-    case 5:
-        CheckoutOrders();
-        break;
-    case 6:
-        cout << "Thank you for shopping at Wake Bookstore!" << endl;
-        break;
-    default:
-        cout << "Invalid choice" << endl;
-    }
+	int choice = selectMenu();
 
-    return 0;
+	switch (choice)
+	{
+	case 1:
+		PlaceOrder();
+		break;
+	case 2:
+		UpdateOrder();
+		break;
+	case 3:
+		CancelOrder();
+		break;
+	case 4:
+		PrintOrders();
+		break;
+	case 5:
+		CheckoutOrders();
+		break;
+	case 6:
+		cout << "Thank you for shopping at Wake Bookstore!" << endl;
+		break;
+	default:
+		cout << "Invalid choice" << endl;
+	}
+
+	return 0;
 }
 
-void LoadCustomers(ifstream&, CustomerList&) {
-    if () {
-        cout << "All customers and orders are loaded." << endl;
-    }
-    else {
-        cout << "Error: Issue loading customer data information." << endl;
-    }
-        
-}
-
-int selectMenu()    {
-    int select;
-    cout << "Please select one of the following actions: " << endl;
-    cout << "1: Place an order." << endl;
-    cout << "2: Update an order." << endl;
-    cout << "3: Cancel an order." << endl;
-    cout << "4: Print all orders." << endl;
-    cout << "5: Checkout Orders." << endl;
-    cout << "6: Exit \n" << endl;
-    cin >> select;
-    return select;
+void LoadCustomers(ifstream&, CustomerList&)
+{
+	if ()
+	{
+		cout << "All customers and orders are loaded." << endl;
+	}
+	else
+	{
+		cout << "Error: Issue loading customer data information." << endl;
+	}
 
 }
 
-void PlaceOrder(CustomerList&)  {
-    return true;
+int selectMenu()
+{
+	int select;
+	cout << "Please select one of the following actions: " << endl;
+	cout << "1: Place an order." << endl;
+	cout << "2: Update an order." << endl;
+	cout << "3: Cancel an order." << endl;
+	cout << "4: Print all orders." << endl;
+	cout << "5: Checkout Orders." << endl;
+	cout << "6: Exit \n" << endl;
+	cin >> select;
+	return select;
+
 }
 
-void UpdateOrder(CustomerList&) {
-    return true;
+void PlaceOrder(CustomerList&)
+{
+
 }
 
-void CancelOrder(CustomerList&) {
-    return true;
+void UpdateOrder(CustomerList&)
+{
+
 }
 
-void PrintOrders(CustomerList&) {
-    return true;
+void CancelOrder(CustomerList&)
+{
+
 }
 
-void CheckoutOrders(CustomerList&)  {
-    return true;
+void PrintOrders(CustomerList&)
+{
+
 }
 
-void UpdateDataFile(CustomerList&)  {
-    return true;
+void CheckoutOrders(CustomerList&)
+{
+
+}
+
+void UpdateDataFile(CustomerList&)
+{
+
 }

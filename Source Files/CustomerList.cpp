@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//                                                                     
+//
 // Filename: CustomerList.cpp
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -16,30 +16,57 @@
 
 using namespace std;
 
-ostream& operator<<(ostream& out, const CustomerList& customers)  {
-	linkedListIterator i = linkedListIterator(customers.first);
-	for (;i!=nullptr;i++)
+ostream& operator<<(ostream& out, const CustomerList& customers)
+{
+	linkedListIterator<Customer> i = linkedListIterator<Customer>(customers.first);
+	for (;i!=nullptr;++i)
 	{
 		out << *i;
 	}
 }
 
-void CustomerList::AddCustomer(Customer&)   {
-
+void CustomerList::AddCustomer(Customer& customer)
+{
+	linkedListType::insertLast(customer);
 }
 
-bool CustomerList::SearchCustomerByName(string) const {
-
+bool CustomerList::SearchCustomerByName(string name) const
+{
+	OrderList empty;
+	Customer to_find = Customer(name,"","",empty);
+	return linkedListType::search(to_find);
 }
 
-Customer getCustomerByName(string)  {
-    
+Customer CustomerList::getCustomerByName(string name) const
+{
+	linkedListIterator<Customer> i = linkedListIterator<Customer>(this->first);
+	for (;i!=nullptr;++i)
+	{
+		if ((*i).getCustomerName() == name)
+		{
+			return *i;
+		}
+	}
+	/* Are we supposed to throw if not found? */
 }
 
-void CustomerList::UpdateCustomer(Customer&){
-
+void CustomerList::UpdateCustomer(Customer& updated)
+{
+	/* Assuming we're supposed to find the customer *
+	 * by name and update that record with what     *
+	 * we're passed in our argument.                */
+	nodeType<Customer> * node;
+	for (node=this->first;node != nullptr;node=node->link)
+	{
+		if (node->info == updated) {
+			node->info = updated;
+			return;
+		}
+	}
+	/* Throw error if customer doesn't exist? Add to list? */
 }
 
-void CustomerList::UpdateDataFile(ofstream&)    {
+void CustomerList::UpdateDataFile(ofstream&)
+{
 
 }

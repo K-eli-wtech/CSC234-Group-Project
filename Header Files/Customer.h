@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//                                                                     
+//
 // Filename: Customer.h
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -20,16 +20,16 @@ using namespace std;
 //////////
 //
 // Class: Customer
-// 
-// Description: 
-// 
+//
+// Description:
+//
 // Data Members:
 // output op
 // name
 // address
 // email
 // orders
-// 
+//
 // Member Functions:
 // Customer (2)
 // getOrders
@@ -45,27 +45,28 @@ using namespace std;
 //
 //////////
 
-class Customer  {
-        friend ostream& operator<<(ostream&, const Customer&);
-    private:
-        string name;
-        string address;
-        string email;
-        OrderList orders;
+class Customer
+{
+	friend ostream& operator<<(ostream&, const Customer&);
+	private:
+		string name;
+		string address;
+		string email;
+		OrderList orders;
 
-    public:
-        Customer();
-        Customer(string, string, string, OrderList);
-        OrderList getOrders();
-        void AddOrder(Order);
-        void UpdateOrders(string, int);
-        void CancelOrder(string);
-        string getCustomerName();
-        string getAddress();
-        string getEmail();
-        double checkoutOrders();
-        bool operator==(const Customer&) const;
-        bool operator!=(const Customer&) const;
+	public:
+		Customer();
+		Customer(string, string, string, OrderList);
+		OrderList getOrders();
+		void AddOrder(Order);
+		void UpdateOrders(string, int);
+		void CancelOrder(string);
+		string getCustomerName();
+		string getAddress();
+		string getEmail();
+		double checkoutOrders();
+		bool operator==(const Customer&) const;
+		bool operator!=(const Customer&) const;
 };
 
 #endif
