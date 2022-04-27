@@ -37,9 +37,17 @@ bool CustomerList::SearchCustomerByName(string name) const
 	return linkedListType::search(to_find);
 }
 
-Customer getCustomerByName(string)
+Customer getCustomerByName(string name)
 {
-
+	linkedListIterator<Customer> i = linkedListIterator<Customer>(customers.first);
+	for (;i!=nullptr;++i)
+	{
+		if ((*i).getCustomerName() == name)
+		{
+			return *i;
+		}
+	}
+	/* Are we supposed to throw if not found? */
 }
 
 void CustomerList::UpdateCustomer(Customer&)
