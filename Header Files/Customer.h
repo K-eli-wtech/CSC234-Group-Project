@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//																	 
+//
 // Filename: Customer.h
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -20,16 +20,16 @@ using namespace std;
 //////////
 //
 // Class: Customer
-// 
-// Description: 
-// 
+//
+// Description:
+//
 // Data Members:
 // output op
 // name
 // address
 // email
 // orders
-// 
+//
 // Member Functions:
 // Customer (2)
 // getOrders

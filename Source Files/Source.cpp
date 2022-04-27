@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//																	 
+//
 // Filename: Source.cpp
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -32,7 +32,7 @@ int main()
 
 	ifstream inFile;
 	inFile.open("BookOrders.txt");
-	
+
 	if(!inFile)
 	{
 		string subFile;
@@ -80,7 +80,7 @@ void LoadCustomers(ifstream&, CustomerList&)
 	{
 		cout << "Error: Issue loading customer data information." << endl;
 	}
-		
+
 }
 
 int selectMenu()

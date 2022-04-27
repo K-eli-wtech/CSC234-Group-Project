@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//																	 
+//
 // Filename: Order.h
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -17,15 +17,15 @@
 //////////
 //
 // Class: Order
-// 
-// Description: 
-// 
+//
+// Description:
+//
 // Data Members:
 // output op
 // bookTitle
 // unitPrice
 // number
-// 
+//
 // Member Functions:
 // Order (2)
 // checkTitle

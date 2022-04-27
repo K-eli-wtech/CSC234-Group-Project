@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//                                                                     
+//
 // Filename: OrderList.cpp
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White

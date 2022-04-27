@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//                                                                     
+//
 // Filename: linkedList.h
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -32,7 +32,7 @@ public:
     bool operator==(const linkedListIterator<Type>& right) const;
     bool operator!=(const linkedListIterator<Type>& right) const;
 private:
-    nodeType<Type>* current; 
+    nodeType<Type>* current;
 };
 
 template <class Type>
@@ -97,9 +97,9 @@ public:
     linkedListType(const linkedListType<Type>& otherList);
     ~linkedListType();
 protected:
-    int count;   
-    nodeType<Type>* first; 
-    nodeType<Type>* last;  
+    int count;
+    nodeType<Type>* first;
+    nodeType<Type>* last;
 private:
     void copyList(const linkedListType<Type>& otherList);
 };
@@ -111,7 +111,7 @@ bool linkedListType<Type>::isEmptyList() const
 }
 
 template <class Type>
-linkedListType<Type>::linkedListType() 
+linkedListType<Type>::linkedListType()
 {
     first = nullptr;
     last = nullptr;
@@ -121,29 +121,29 @@ linkedListType<Type>::linkedListType()
 template <class Type>
 void linkedListType<Type>::destroyList()
 {
-    nodeType<Type>* temp;   
-    while (first != nullptr)    
-    {                          
-        temp = first;        
-        first = first->link; 
-        delete temp;   
+    nodeType<Type>* temp;
+    while (first != nullptr)
+    {
+        temp = first;
+        first = first->link;
+        delete temp;
     }
-    last = nullptr; 
+    last = nullptr;
     count = 0;
 }
 
 template <class Type>
 void linkedListType<Type>::initializeList()
 {
-    destroyList(); 
+    destroyList();
 }
 
 template <class Type>
 void linkedListType<Type>::print() const
 {
-    nodeType<Type>* current; 
-    current = first;    
-    while (current != nullptr) 
+    nodeType<Type>* current;
+    current = first;
+    while (current != nullptr)
     {
         cout << current->info << " ";
         current = current->link;
@@ -154,20 +154,20 @@ template <class Type>
 int linkedListType<Type>::length() const
 {
     return count;
-}  
+}
 
 template <class Type>
 Type linkedListType<Type>::front() const
 {
     assert(first != nullptr);
-    return first->info; 	
+    return first->info;
 }
 
 template <class Type>
 Type linkedListType<Type>::back() const
 {
     assert(last != nullptr);
-    return last->info; 	
+    return last->info;
 }
 
 template <class Type>
@@ -283,11 +283,11 @@ linkedListIterator<Type> linkedListType<Type>::end()
 template <class Type>
 void linkedListType<Type>::copyList(const linkedListType<Type>& otherList)
 {
-    nodeType<Type>* newNode; 
-    nodeType<Type>* current; 
-    if (first != nullptr) 
+    nodeType<Type>* newNode;
+    nodeType<Type>* current;
+    if (first != nullptr)
         destroyList();
-    if (otherList.first == nullptr) 
+    if (otherList.first == nullptr)
     {
         first = nullptr;
         last = nullptr;
@@ -295,27 +295,27 @@ void linkedListType<Type>::copyList(const linkedListType<Type>& otherList)
     }
     else
     {
-        current = otherList.first; 
+        current = otherList.first;
         count = otherList.count;
-        first = new nodeType<Type>;  
-        first->info = current->info; 
-        first->link = nullptr;        
-        last = first;              
-        current = current->link;     
+        first = new nodeType<Type>;
+        first->info = current->info;
+        first->link = nullptr;
+        last = first;
+        current = current->link;
         while (current != nullptr)
         {
-            newNode = new nodeType<Type>;  
-            newNode->info = current->info; 
-            newNode->link = nullptr;       
-            last->link = newNode;  
-            last = newNode;        
-            current = current->link;   
+            newNode = new nodeType<Type>;
+            newNode->info = current->info;
+            newNode->link = nullptr;
+            last->link = newNode;
+            last = newNode;
+            current = current->link;
         }
     }
 }
 
 template <class Type>
-linkedListType<Type>::~linkedListType() 
+linkedListType<Type>::~linkedListType()
 {
     destroyList();
 }
@@ -330,7 +330,7 @@ linkedListType<Type>::linkedListType(const linkedListType<Type>& otherList)
 template <class Type>
 const linkedListType<Type>& linkedListType<Type>::operator=(const linkedListType<Type>& otherList)
 {
-    if (this != &otherList) 
+    if (this != &otherList)
     {
         copyList(otherList);
     }

@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//																	 
+//
 // Filename: OrderList.h
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -21,12 +21,12 @@ using namespace std;
 //////////
 //
 // Class: OrderList
-// 
-// Description: 
-// 
+//
+// Description:
+//
 // Data Members:
 // output op
-// 
+//
 // Member Functions:
 // AddOrder
 // UpdateOrder

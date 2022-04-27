@@ -1,5 +1,5 @@
 ///////////////////////////////////////////////////////////////////////
-//                                                                     
+//
 // Filename: Order.cpp
 // Date: April 24, 2022
 // Programmer: Paul Garland, Justin Bester, Kaleb White
@@ -72,7 +72,7 @@ int Order::getNumber()
 bool Order::operator==(const Order& right) const
 {
 	return (
-		bookTitle == right.bookTitle && unitPrice == right.unitPrice 
+		bookTitle == right.bookTitle && unitPrice == right.unitPrice
 		&& number == right.number
 	);
 }
