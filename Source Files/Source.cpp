@@ -14,6 +14,8 @@
 #include <iomanip>
 #include <string>
 #include "CustomerList.h"
+#include "OrderList.h"
+#include "linkedList.h"
 
 using namespace std;
 
@@ -27,6 +29,8 @@ void CheckoutOrders(CustomerList&);
 void UpdateDataFile(CustomerList&);
 
 int main() {
+    CustomerList customers;
+
     cout << "Welcome to Wake Bookstore!" << endl;
 
     ifstream inFile;
@@ -37,69 +41,28 @@ int main() {
         cout << "Failed to find the default file, please input file name." << endl;
         cin >> subFile;
         inFile.open(subFile);
-    }
-        // I think this might suppoosed ot be part of the LoadCustomers function? lines 42-80
-    while (inFile) {
-        string name = "";
-        string address = "";
-        string email = "";
-        string book = "";
-        string cost = "";
-        string quantity = "";
-        string line;
-        OrderList orders;
-        CustomerList customers;
-
-        getline(inFile, name);
-        getline(inFile, address);
-        getline(inFile, email);
-        
-
-        while (/*line doesnt start with '%' */) {
-            getline(inFile, book);
-            getline(inFile, cost);
-            stod(cost);
-            getline(inFile, quantity);
-            stoi(quantity);
-            Order order(book, cost, quantity);
-            orders.AddOrder(order);
-        }
-        Customer customer(name, address, email, orders);
-        customers.AddCustomer(customer);
-
-        // I don't think this part is going to work but I'm trying to loop it if the line doesn't start with % for the next name so we can store the orders
-        getline(inFile, line);
-        if (line.find("%") != string::npos) {
-            name = line;
-            cout << "its a name" << endl;
-            break;
-        }
-        else {
-            book = line;
-            getline(inFile, cost);
-            getline(inFile, quantity);
-            cout << book << "\n" << cost << "\n" << quantity << "\n" << endl;
-        }
-    }
+    } 
+    
+    LoadCustomers(inFile, customers);
 
     int choice = selectMenu();
 
     switch (choice)
     {
     case 1:
-        PlaceOrder(c_list);
+        PlaceOrder(customers);
         break;
     case 2:
-        UpdateOrder(c_list);
+        UpdateOrder(customers);
         break;
     case 3:
-        CancelOrder(c_list);
+        CancelOrder(customers);
         break;
     case 4:
-        PrintOrders(c_list);
+        PrintOrders(customers);
         break;
     case 5:
-        CheckoutOrders(c_list);
+        CheckoutOrders(customers);
         break;
     case 6:
         cout << "Thank you for shopping at Wake Bookstore!" << endl;
@@ -112,16 +75,51 @@ int main() {
 }
 
 void LoadCustomers(ifstream& inFile, CustomerList& customers) {
-    /* We might be able to make this into a try catch block if we move the section
-    from above into the function */
-    if () {
-        cout << "All customers and orders are loaded." << endl;
-    }
-    else {
-        cout << "Error: Issue loading customer data information." << endl;
-    }
+    // Put a try catch block for "customers loaded" output
+    while (inFile) {
+        string name = "";
+        string address = "";
+        string email = "";
+        string book = "";
+        string cost = "";
+        string quantity = "";
+        string line;
+        OrderList orders;
 
+        getline(inFile, name);
+        getline(inFile, address);
+        getline(inFile, email);
+        
+
+        while (/*line doesnt start with '%'? */) {
+            getline(inFile, book);
+            getline(inFile, cost);
+            double _cost = stod(cost);
+            getline(inFile, quantity);
+            int _quantity = stoi(quantity);
+
+            Order order(book, _cost, _quantity);
+            orders.AddOrder(order);
+        }
+        Customer customer(name, address, email, orders);
+        customers.AddCustomer(customer);
+
+        // I don't think this part is going to work but I'm trying to loop it if the line doesn't start with % for the next name so we can store the orders
+        getline(inFile, line);
+        if (line.find("%") != string::npos) {
+            name = line;
+            cout << "its a name" << endl;
+            break;
+        } else {
+            book = line;
+            getline(inFile, cost);
+            getline(inFile, quantity);
+            cout << book << "\n" << cost << "\n" << quantity << "\n" << endl;
+        }
+
+    }
 }
+
 
 int selectMenu() {
     int select;
