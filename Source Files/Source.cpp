@@ -38,7 +38,7 @@ int main() {
         cin >> subFile;
         inFile.open(subFile);
     }
-
+        // I think this might suppoosed ot be part of the LoadCustomers function? lines 42-80
     while (inFile) {
         string name = "";
         string address = "";
@@ -47,15 +47,25 @@ int main() {
         string cost = "";
         string quantity = "";
         string line;
+        OrderList orders;
+        CustomerList customers;
 
         getline(inFile, name);
         getline(inFile, address);
         getline(inFile, email);
-        Customer customer(name, address, email, orders);
+        
 
-        getline(inFile, book);
-        getline(inFile, cost);
-        getline(inFile, quantity);
+        while (/*line doesnt start with '%' */) {
+            getline(inFile, book);
+            getline(inFile, cost);
+            stod(cost);
+            getline(inFile, quantity);
+            stoi(quantity);
+            Order order(book, cost, quantity);
+            orders.AddOrder(order);
+        }
+        Customer customer(name, address, email, orders);
+        customers.AddCustomer(customer);
 
         // I don't think this part is going to work but I'm trying to loop it if the line doesn't start with % for the next name so we can store the orders
         getline(inFile, line);
@@ -101,7 +111,9 @@ int main() {
     return 0;
 }
 
-void LoadCustomers(ifstream&, CustomerList&) {
+void LoadCustomers(ifstream& inFile, CustomerList& customers) {
+    /* We might be able to make this into a try catch block if we move the section
+    from above into the function */
     if () {
         cout << "All customers and orders are loaded." << endl;
     }
@@ -125,7 +137,7 @@ int selectMenu() {
 
 }
 
-void PlaceOrder(CustomerList&) {
+void PlaceOrder(CustomerList& customers) {
     cout << "Enter customer name: " << endl;
 
     if () {
@@ -136,7 +148,7 @@ void PlaceOrder(CustomerList&) {
     }
 }
 
-void UpdateOrder(CustomerList&) {
+void UpdateOrder(CustomerList& customers) {
     cout << "Enter customer name: " << endl;
 
     if () {
@@ -147,7 +159,7 @@ void UpdateOrder(CustomerList&) {
     }
 }
 
-void CancelOrder(CustomerList&) {
+void CancelOrder(CustomerList& customers) {
     cout << "Enter customer name: " << endl;
 
     if () {
@@ -158,11 +170,11 @@ void CancelOrder(CustomerList&) {
     }
 }
 
-void PrintOrders(CustomerList&) {
+void PrintOrders(CustomerList& customers) {
 }
 
-void CheckoutOrders(CustomerList&) {
+void CheckoutOrders(CustomerList& customers) {
 }
 
-void UpdateDataFile(CustomerList&) {
+void UpdateDataFile(CustomerList& customers) {
 }
