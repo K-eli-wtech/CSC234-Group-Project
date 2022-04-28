@@ -45,7 +45,7 @@ bool Order::checkTitle(string name)
 
 double Order::CalculatorCost()
 {
-	double cost = this->number + this->unitPrice;
+	double cost = this->number * this->unitPrice;
 	return cost;
 }
 
