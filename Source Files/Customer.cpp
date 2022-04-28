@@ -69,6 +69,8 @@ string Customer::getEmail() {
 }
 
 double Customer::checkoutOrders() {
+    /* I think for this function it just needs to calculate and return
+     the total of all the orders and the source will print out the formatted text*/
 
 }
 
