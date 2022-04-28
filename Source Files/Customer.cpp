@@ -48,12 +48,12 @@ void Customer::AddOrder(Order order) {
 	this->orders.AddOrder(order);
 }
 
-void Customer::UpdateOrders(string, int) {
-
+void Customer::UpdateOrders(string title, int number) {
+    this->orders.UpdateOrder(title, number);
 }
 
-void Customer::CancelOrder(string) {
-
+void Customer::CancelOrder(string title) {
+    this->orders.CancelOrder(title);
 }
 
 string Customer::getCustomerName() {
