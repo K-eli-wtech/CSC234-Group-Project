@@ -76,7 +76,8 @@ int main() {
 
 void LoadCustomers(ifstream& inFile, CustomerList& customers) {
     // Put a try catch block for "customers loaded" output
-    
+    string line;
+    getline(inFile, line);
     try
     {
     while (inFile) {
@@ -86,17 +87,16 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
         string book = "";
         string cost = "";
         string quantity = "";
-        string line;
         OrderList orders;
 
-        getline(inFile, name);
+        name = line;
         name.erase(0,1);
         getline(inFile, address);
         getline(inFile, email);
         
         getline(inFile, line);
         while (line[0] != '%') {
-            getline(inFile, book);
+            book = line;
             getline(inFile, cost);
             double _cost = stod(cost);
             getline(inFile, quantity);
