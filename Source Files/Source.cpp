@@ -94,8 +94,12 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
         getline(inFile, address);
         getline(inFile, email);
         
-        getline(inFile, line);
-        while (line[0] != '%') {
+        while (1) {
+            getline(inFile, line);
+            if (line[0] == '%')
+            {
+                break;
+            }
             book = line;
             getline(inFile, cost);
             double _cost = stod(cost);
