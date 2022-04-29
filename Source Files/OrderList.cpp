@@ -58,7 +58,7 @@ void OrderList::CancelOrder(string title)
 
 double OrderList::CalculateSubtotal()
 {
-	double subtotal;
+	double subtotal = 0;
 	linkedListIterator<Order> i = linkedListIterator<Order>(this->first);
 	for (;i!=nullptr;++i)
 	{
