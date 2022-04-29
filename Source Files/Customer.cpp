@@ -69,9 +69,12 @@ string Customer::getEmail() {
 }
 
 double Customer::checkoutOrders() {
-    /* I think for this function it just needs to calculate and return
-     the total of all the orders and the source will print out the formatted text*/
+    double total;
+    double bookTotal;
 
+    bookTotal = this->orders.CalculateSubtotal();
+    total = bookTotal + (bookTotal * .07);
+    return total;
 }
 
 bool Customer::operator==(const Customer& comp) const {
