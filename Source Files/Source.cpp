@@ -41,8 +41,8 @@ int main() {
         cout << "Failed to find the default file, please input file name." << endl;
         cin >> subFile;
         inFile.open(subFile);
-    } 
-    
+    }
+
     LoadCustomers(inFile, customers);
 
     int choice = selectMenu();
@@ -80,40 +80,39 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
     getline(inFile, line);
     try
     {
-    while (inFile) {
-        string name = "";
-        string address = "";
-        string email = "";
-        string book = "";
-        string cost = "";
-        string quantity = "";
-        OrderList orders;
+        while (inFile) {
+            string name = "";
+            string address = "";
+            string email = "";
+            string book = "";
+            string cost = "";
+            string quantity = "";
+            OrderList orders;
 
-        name = line;
-        name.erase(0,1);
-        getline(inFile, address);
-        getline(inFile, email);
-        
-        while (1) {
-            getline(inFile, line);
-            if (line[0] == '%')
-            {
-                break;
+            name = line;
+            name.erase(0, 1);
+            getline(inFile, address);
+            getline(inFile, email);
+            while (1) {
+                getline(inFile, line);
+                if (line[0] == '%' || inFile.eof())
+                {
+                    break;
+                }
+                book = line;
+                getline(inFile, cost);
+                double _cost = stod(cost);
+                getline(inFile, quantity);
+                int _quantity = stoi(quantity);
+
+                Order order(book, _cost, _quantity);
+                orders.AddOrder(order);
             }
-            book = line;
-            getline(inFile, cost);
-            double _cost = stod(cost);
-            getline(inFile, quantity);
-            int _quantity = stoi(quantity);
+            Customer customer(name, address, email, orders);
+            customers.AddCustomer(customer);
 
-            Order order(book, _cost, _quantity);
-            orders.AddOrder(order);
         }
-        Customer customer(name, address, email, orders);
-        customers.AddCustomer(customer);
-
-    }
-    cout << "Customers Loaded" << endl;
+        cout << "Customers Loaded" << endl;
     }
     catch (int)
     {
@@ -142,28 +141,28 @@ void PlaceOrder(CustomerList& customers) {
     int b_inv;
     Customer cust;
 
-    cout << "Enter customer name: " << endl;
+    cout << "Enter customer name: ";
     cin >> name;
 
     cust = customers.getCustomerByName(name);
     cout << "Enter the book title: ";
     cin >> b_title;
     cout << "\nEnter the price of the book: ";
-    cin >> b_price; 
+    cin >> b_price;
     cout << "\nEnter the number of books: ";
     cin >> b_inv;
 
     Order ord(b_title, b_price, b_inv);
     cust.AddOrder(ord);
     cout << "New order is added for customer " << cust.getCustomerName();
-    
+
 }
 
 void UpdateOrder(CustomerList& customers) {
     string name, b_title;
     int b_inv;
     Customer cust;
-    cout << "Enter customer name: " << endl;
+    cout << "Enter customer name: ";
     cin >> name;
 
     cust = customers.getCustomerByName(name);
@@ -171,17 +170,17 @@ void UpdateOrder(CustomerList& customers) {
     cin >> b_title;
     cout << "\nEnter the number of book to be updated: ";
     cin >> b_inv;
-    
+
     //OrderList::SearchOrderList() to retrieve order by name if this doesnt work
     cust.UpdateOrders(b_title, b_inv);
-    
-    
+
+
 }
 
 void CancelOrder(CustomerList& customers) {
     string name, title;
     Customer cust;
-    cout << "Enter customer name: " << endl;
+    cout << "Enter customer name: ";
     cin >> name;
     cust = customers.getCustomerByName(name);
 
@@ -189,7 +188,7 @@ void CancelOrder(CustomerList& customers) {
     cin >> title;
 
     cust.CancelOrder(title);
-    
+
 }
 
 void PrintOrders(CustomerList& customers) {
@@ -198,7 +197,7 @@ void PrintOrders(CustomerList& customers) {
 void CheckoutOrders(CustomerList& customers) {
     string name;
     Customer cust;
-    cout << "Enter customer name: " << endl;
+    cout << "Enter customer name: ";
     cin >> name;
     cust = customers.getCustomerByName(name);
 
