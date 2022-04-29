@@ -76,6 +76,9 @@ int main() {
 
 void LoadCustomers(ifstream& inFile, CustomerList& customers) {
     // Put a try catch block for "customers loaded" output
+    
+    try
+    {
     while (inFile) {
         string name = "";
         string address = "";
@@ -118,6 +121,12 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
         }
 
     }
+    cout << "Customers Loaded" << endl;
+    }
+    catch (int)
+    {
+        cout << "Error Loading customers" << endl;
+    }
 }
 
 
@@ -136,36 +145,59 @@ int selectMenu() {
 }
 
 void PlaceOrder(CustomerList& customers) {
+    string name, b_title;
+    double b_price;
+    int b_inv;
+    Customer cust;
+
     cout << "Enter customer name: " << endl;
+    cin >> name;
 
-    if () {
+    cust = customers.getCustomerByName(name);
+    cout << "Enter the book title: ";
+    cin >> b_title;
+    cout << "\nEnter the price of the book: ";
+    cin >> b_price; 
+    cout << "\nEnter the number of books: ";
+    cin >> b_inv;
 
-    }
-    else {
-        cout << "Customer does not exist" << endl;
-    }
+    Order ord(b_title, b_price, b_inv);
+    cust.AddOrder(ord);
+    cout << "New order is added for customer " << cust.getCustomerName();
+    
 }
 
 void UpdateOrder(CustomerList& customers) {
+    string name, b_title;
+    int b_inv;
+    Customer cust;
     cout << "Enter customer name: " << endl;
+    cin >> name;
 
-    if () {
-
-    }
-    else {
-        cout << "Customer does not exist" << endl;
-    }
+    cust = customers.getCustomerByName(name);
+    cout << "Enter the book title to be updated: ";
+    cin >> b_title;
+    cout << "\nEnter the number of book to be updated: ";
+    cin >> b_inv;
+    
+    //OrderList::SearchOrderList() to retrieve order by name if this doesnt work
+    cust.UpdateOrders(b_title, b_inv);
+    
+    
 }
 
 void CancelOrder(CustomerList& customers) {
+    string name, title;
+    Customer cust;
     cout << "Enter customer name: " << endl;
+    cin >> name;
+    cust = customers.getCustomerByName(name);
 
-    if () {
+    cout << "Enter the book title to be canceled: ";
+    cin >> title;
 
-    }
-    else {
-        cout << "Customer does not exist" << endl;
-    }
+    cust.CancelOrder(title);
+    
 }
 
 void PrintOrders(CustomerList& customers) {
