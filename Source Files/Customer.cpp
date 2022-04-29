@@ -20,9 +20,10 @@ ostream& operator<<(ostream& out, const Customer& customer) {
     out << "***************************************************************************************************\n";
     out << "Name:      " << customer.name << '\n';
     out << "Address:   " << customer.address << '\n';
-    cout << "Email:    " << customer.email << '\n';
-    "------------ Book Orders -------------";
-    cout << customer.orders;
+    out << "Email:    " << customer.email << '\n';
+    out << "------------ Book Orders -------------\n";
+    out << customer.orders;
+    return out;
 }
 
 Customer::Customer() {
