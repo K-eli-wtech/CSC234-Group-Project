@@ -20,7 +20,7 @@ using namespace std;
 ostream& operator<<(ostream& out, const CustomerList& customers)
 {
 	linkedListIterator<Customer> i = linkedListIterator<Customer>(customers.first);
-	for (;i!=nullptr;++i)
+	for (; i != nullptr; ++i)
 	{
 		out << *i;
 	}
@@ -34,8 +34,8 @@ void CustomerList::AddCustomer(Customer& customer)
 
 bool CustomerList::SearchCustomerByName(string name) const
 {
-	nodeType<Customer> * node;
-	for (node=this->first;node != nullptr;node=node->link)
+	nodeType<Customer>* node;
+	for (node = this->first; node != nullptr; node = node->link)
 	{
 		if (node->info.getCustomerName() == name)
 		{
@@ -47,8 +47,8 @@ bool CustomerList::SearchCustomerByName(string name) const
 
 Customer CustomerList::getCustomerByName(string name) const
 {
-	nodeType<Customer> * node;
-	for (node=this->first;node != nullptr;node=node->link)
+	nodeType<Customer>* node;
+	for (node = this->first; node != nullptr; node = node->link)
 	{
 		if (node->info.getCustomerName() == name)
 		{
@@ -58,7 +58,7 @@ Customer CustomerList::getCustomerByName(string name) const
 	/* Are we supposed to throw if not found? */
 	/* If we do nothing if not found, it causes a segfault */
 	/* Paul: I think if it doesn't specify we should either have it send an error and recall the function or fail
-	   the program gracefully */ 
+	   the program gracefully */
 }
 
 void CustomerList::UpdateCustomer(Customer& updated)
@@ -66,9 +66,9 @@ void CustomerList::UpdateCustomer(Customer& updated)
 	/* Assuming we're supposed to find the customer *
 	 * by name and update that record with what     *
 	 * we're passed in our argument.                */
-	// Paul: That was how I understood it
-	nodeType<Customer> * node;
-	for (node=this->first;node != nullptr;node=node->link)
+	 // Paul: That was how I understood it
+	nodeType<Customer>* node;
+	for (node = this->first; node != nullptr; node = node->link)
 	{
 		if (node->info == updated) {
 			node->info = updated;
@@ -81,7 +81,7 @@ void CustomerList::UpdateCustomer(Customer& updated)
 void CustomerList::UpdateDataFile(ofstream& out)
 {
 	linkedListIterator<Customer> i = linkedListIterator<Customer>(this->first);
-	for (;i!=nullptr;++i)
+	for (; i != nullptr; ++i)
 	{
 		out << '%' << (*i).getCustomerName() << '\n';
 		out << (*i).getAddress() << '\n';

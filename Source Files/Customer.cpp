@@ -17,7 +17,7 @@ using namespace std;
 
 
 ostream& operator<<(ostream& out, const Customer& customer) {
-    out << "\n***************************************************************************************************\n";
+    out << "***************************************************************************************************\n";
     out << "Name:      " << customer.name << '\n';
     out << "Address:   " << customer.address << '\n';
     out << "Email:    " << customer.email << '\n';
@@ -47,7 +47,7 @@ OrderList Customer::getOrders() {
 }
 
 void Customer::AddOrder(Order order) {
-    orders.AddOrder(order);
+	orders.AddOrder(order);
 }
 
 void Customer::UpdateOrders(string title, int number) {
