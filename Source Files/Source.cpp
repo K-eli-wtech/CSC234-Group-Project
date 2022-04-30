@@ -150,6 +150,7 @@ bool is_double_string(string str)
 			return false;
 		}
 	}
+	return true;
 }
 
 int selectMenu() {
@@ -183,10 +184,15 @@ void PlaceOrder(CustomerList& customers) {
     cin.ignore();
     getline(cin, name);
 
-    cust = customers.getCustomerByName(name);
-    /* The case in getCustomerByName where the customer *
-     * is not found needs to be handled gracefully or   *
-     * we will segfault here.                           */
+    if (customers.searchCustomerByName(name))
+    {
+	cust = customers.getCustomerByName(name);
+    }
+    else
+    {
+	    cerr << "Unknown Customer.\n";
+	    return;
+    }
     cout << "Enter the book title: ";
     cin.ignore();
     getline(cin, b_title);
