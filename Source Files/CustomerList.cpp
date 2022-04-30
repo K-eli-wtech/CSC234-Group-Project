@@ -35,9 +35,15 @@ void CustomerList::AddCustomer(Customer& customer)
 
 bool CustomerList::SearchCustomerByName(string name) const
 {
-	OrderList empty;
-	Customer to_find = Customer(name,"","",empty);
-	return linkedListType::search(to_find);
+	nodeType<Customer> * node;
+	for (node=this->first;node != nullptr;node=node->link)
+	{
+		if (node->info.getCustomerName() == name)
+		{
+			return true;
+		}
+	}
+	return false;
 }
 
 Customer CustomerList::getCustomerByName(string name) const
