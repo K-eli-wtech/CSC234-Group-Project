@@ -45,8 +45,10 @@ int main() {
 
     LoadCustomers(inFile, customers);
 
-    int choice = selectMenu();
-    while (choice != 6) {
+    while (1)
+    {
+        int choice = selectMenu();
+
         switch (choice)
         {
         case 1:
@@ -66,11 +68,10 @@ int main() {
             break;
         case 6:
             cout << "Thank you for shopping at Wake Bookstore!" << endl;
-            break;
+	    return 0;
         default:
             cout << "Invalid choice" << endl;
         }
-        choice = selectMenu();
     }
     return 0;
 }
@@ -132,6 +133,14 @@ int selectMenu() {
     cout << "5: Checkout Orders." << endl;
     cout << "6: Exit \n" << endl;
     cin >> select;
+    /* Remove bad(non-numeric) input from cin queue */
+    if (!cin.good())
+    {
+        cin.clear();
+        string ignore;
+        cin >> ignore;
+	return -1;
+    }
     return select;
 
 }
