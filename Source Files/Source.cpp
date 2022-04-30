@@ -122,9 +122,21 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
     }
 }
 
+bool is_numeric_string(string str)
+{
+	int i = 0;
+	for (i = 0; i < str.length(); i++)
+	{
+		if (!isdigit(str[i]))
+		{
+			return false;
+		}
+	}
+	return true;
+}
 
 int selectMenu() {
-    int select;
+    string sel;
     cout << "Please select one of the following actions: " << endl;
     cout << "1: Place an order." << endl;
     cout << "2: Update an order." << endl;
@@ -132,16 +144,12 @@ int selectMenu() {
     cout << "4: Print all orders." << endl;
     cout << "5: Checkout Orders." << endl;
     cout << "6: Exit \n" << endl;
-    cin >> select;
-    /* Remove bad(non-numeric) input from cin queue */
-    if (!cin.good())
+    getline(cin, sel);
+    if (!is_numeric_string(sel))
     {
-        cin.clear();
-        string ignore;
-        cin >> ignore;
-	return -1;
+	    return -1;
     }
-    return select;
+    return stoi(sel);
 
 }
 
