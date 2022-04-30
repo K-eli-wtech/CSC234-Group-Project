@@ -163,6 +163,7 @@ void PlaceOrder(CustomerList& customers) {
     Customer cust;
 
     cout << "Enter customer name: ";
+    cin.ignore();
     getline(cin, name);
 
     cust = customers.getCustomerByName(name);
@@ -170,7 +171,8 @@ void PlaceOrder(CustomerList& customers) {
      * is not found needs to be handled gracefully or   *
      * we will segfault here.                           */
     cout << "Enter the book title: ";
-    cin >> b_title;
+    cin.ignore();
+    getline(cin, b_title);
     cout << "\nEnter the price of the book: ";
     cin >> b_price;
     cout << "\nEnter the number of books: ";
@@ -187,6 +189,7 @@ void UpdateOrder(CustomerList& customers) {
     int b_inv;
     Customer cust;
     cout << "Enter customer name: ";
+    cin.ignore();
     getline(cin, name);
 
     cust = customers.getCustomerByName(name);
@@ -205,6 +208,7 @@ void CancelOrder(CustomerList& customers) {
     string name, title;
     Customer cust;
     cout << "Enter customer name: ";
+    cin.ignore();
     getline(cin, name);
     cust = customers.getCustomerByName(name);
 
@@ -226,6 +230,7 @@ void CheckoutOrders(CustomerList& customers) {
     double total = 0;
 
     cout << "Enter customer name: ";
+    cin.ignore();
     getline(cin, name);
     cust = customers.getCustomerByName(name);
     subTotal = cust.checkoutOrders();
@@ -241,5 +246,3 @@ void CheckoutOrders(CustomerList& customers) {
 
 void UpdateDataFile(CustomerList& customers) {
 }
-
-
