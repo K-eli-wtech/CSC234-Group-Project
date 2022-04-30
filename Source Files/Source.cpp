@@ -181,16 +181,15 @@ void PlaceOrder(CustomerList& customers) {
     Customer cust;
 
     cout << "Enter customer name: ";
-    cin.ignore();
     getline(cin, name);
 
     if (customers.SearchCustomerByName(name)) {
         cust = customers.getCustomerByName(name);
+        cout << "Existing customer." << endl;
         /* The case in getCustomerByName where the customer *
          * is not found needs to be handled gracefully or   *
          * we will segfault here.                           */
         cout << "Enter the book title: ";
-        cin.ignore();
         getline(cin, b_title);
         cout << "\nEnter the price of the book: ";
         cin >> b_price;
@@ -204,7 +203,6 @@ void PlaceOrder(CustomerList& customers) {
     else {
         cout << "This is not a valid customer" << endl;
     }
-
 }
 
 void UpdateOrder(CustomerList& customers) {
