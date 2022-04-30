@@ -197,11 +197,21 @@ void PrintOrders(CustomerList& customers) {
 void CheckoutOrders(CustomerList& customers) {
     string name;
     Customer cust;
+    double subTotal = 0;
+    double total = 0;
+
     cout << "Enter customer name: ";
     cin >> name;
     cust = customers.getCustomerByName(name);
+    subTotal = cust.checkoutOrders();
+    total = subTotal + (subTotal * .07);
+
 
     cout << cust << endl;
+    cout << "***************************************************************************************************\n";
+    cout << "Subtotal:      $" << subTotal << '\n';
+    cout << "Tax:           $" << subTotal * .07 << '\n';
+    cout << "Total payment:         $" << total << '\n';
 
 }
 
