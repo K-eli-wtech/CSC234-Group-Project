@@ -46,31 +46,32 @@ int main() {
     LoadCustomers(inFile, customers);
 
     int choice = selectMenu();
-
-    switch (choice)
-    {
-    case 1:
-        PlaceOrder(customers);
-        break;
-    case 2:
-        UpdateOrder(customers);
-        break;
-    case 3:
-        CancelOrder(customers);
-        break;
-    case 4:
-        PrintOrders(customers);
-        break;
-    case 5:
-        CheckoutOrders(customers);
-        break;
-    case 6:
-        cout << "Thank you for shopping at Wake Bookstore!" << endl;
-        break;
-    default:
-        cout << "Invalid choice" << endl;
+    while (choice != 6) {
+        switch (choice)
+        {
+        case 1:
+            PlaceOrder(customers);
+            break;
+        case 2:
+            UpdateOrder(customers);
+            break;
+        case 3:
+            CancelOrder(customers);
+            break;
+        case 4:
+            PrintOrders(customers);
+            break;
+        case 5:
+            CheckoutOrders(customers);
+            break;
+        case 6:
+            cout << "Thank you for shopping at Wake Bookstore!" << endl;
+            break;
+        default:
+            cout << "Invalid choice" << endl;
+        }
+        choice = selectMenu();
     }
-
     return 0;
 }
 
@@ -80,7 +81,7 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
     getline(inFile, line);
     try
     {
-        while (inFile) {
+        while (!inFile.eof()) {
             string name = "";
             string address = "";
             string email = "";
@@ -112,7 +113,7 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
             customers.AddCustomer(customer);
 
         }
-        cout << "Customers Loaded" << endl;
+        cout << "All customers and orders are loaded." << endl;
     }
     catch (int)
     {
@@ -192,6 +193,7 @@ void CancelOrder(CustomerList& customers) {
 }
 
 void PrintOrders(CustomerList& customers) {
+    cout << customers << endl;
 }
 
 void CheckoutOrders(CustomerList& customers) {
@@ -208,7 +210,6 @@ void CheckoutOrders(CustomerList& customers) {
 
 
     cout << cust << endl;
-    cout << "***************************************************************************************************\n";
     cout << "Subtotal:      $" << subTotal << '\n';
     cout << "Tax:           $" << subTotal * .07 << '\n';
     cout << "Total payment:         $" << total << '\n';
@@ -217,3 +218,4 @@ void CheckoutOrders(CustomerList& customers) {
 
 void UpdateDataFile(CustomerList& customers) {
 }
+

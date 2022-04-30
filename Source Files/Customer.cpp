@@ -23,6 +23,7 @@ ostream& operator<<(ostream& out, const Customer& customer) {
     out << "Email:    " << customer.email << '\n';
     out << "------------ Book Orders -------------\n";
     out << customer.orders;
+    out << "***************************************************************************************************\n";
     return out;
 }
 
@@ -34,54 +35,53 @@ Customer::Customer() {
 }
 
 Customer::Customer(string _name, string _address, string _email, OrderList _orders) {
-    this->name = _name;
-    this->address = _address;
-    this->email = _email;
-    this->orders = _orders;
+    name = _name;
+    address = _address;
+    email = _email;
+    orders = _orders;
 
 }
 
 OrderList Customer::getOrders() {
-    return this->orders;
+    return orders;
 }
 
 void Customer::AddOrder(Order order) {
-	this->orders.AddOrder(order);
+    orders.AddOrder(order);
 }
 
 void Customer::UpdateOrders(string title, int number) {
-    this->orders.UpdateOrder(title, number);
+    orders.UpdateOrder(title, number);
 }
 
 void Customer::CancelOrder(string title) {
-    this->orders.CancelOrder(title);
+    orders.CancelOrder(title);
 }
 
 string Customer::getCustomerName() {
-    return this->name;
+    return name;
 }
 
 string Customer::getAddress() {
-    return this->address;
+    return address;
 }
 
 string Customer::getEmail() {
-    return this->email;
+    return email;
 }
 
 double Customer::checkoutOrders() {
-    double total;
     double bookTotal;
 
-    bookTotal = this->orders.CalculateSubtotal();
-    total = bookTotal + (bookTotal * .07);
-    return total;
+    bookTotal = orders.CalculateSubtotal();
+
+    return bookTotal;
 }
 
 bool Customer::operator==(const Customer& comp) const {
-    return this->name == comp.name;
+    return name == comp.name;
 }
 
 bool Customer::operator!=(const Customer& comp) const {
-    return this->name != comp.name;
+    return name != comp.name;
 }
