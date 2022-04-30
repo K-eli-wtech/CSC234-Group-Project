@@ -68,7 +68,7 @@ int main() {
             break;
         case 6:
             cout << "Thank you for shopping at Wake Bookstore!" << endl;
-	    return 0;
+            return 0;
         default:
             cout << "Invalid choice" << endl;
         }
@@ -124,15 +124,15 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
 
 bool is_numeric_string(string str)
 {
-	int i = 0;
-	for (i = 0; i < str.length(); i++)
-	{
-		if (!isdigit(str[i]))
-		{
-			return false;
-		}
-	}
-	return true;
+    int i = 0;
+    for (i = 0; i < str.length(); i++)
+    {
+        if (!isdigit(str[i]))
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 int selectMenu() {
@@ -147,7 +147,7 @@ int selectMenu() {
     getline(cin, sel);
     if (!is_numeric_string(sel))
     {
-	    return -1;
+        return -1;
     }
     return stoi(sel);
 
@@ -163,7 +163,7 @@ void PlaceOrder(CustomerList& customers) {
     Customer cust;
 
     cout << "Enter customer name: ";
-    cin >> name;
+    getline(cin, name);
 
     cust = customers.getCustomerByName(name);
     /* The case in getCustomerByName where the customer *
@@ -187,7 +187,7 @@ void UpdateOrder(CustomerList& customers) {
     int b_inv;
     Customer cust;
     cout << "Enter customer name: ";
-    cin >> name;
+    getline(cin, name);
 
     cust = customers.getCustomerByName(name);
     cout << "Enter the book title to be updated: ";
@@ -205,7 +205,7 @@ void CancelOrder(CustomerList& customers) {
     string name, title;
     Customer cust;
     cout << "Enter customer name: ";
-    cin >> name;
+    getline(cin, name);
     cust = customers.getCustomerByName(name);
 
     cout << "Enter the book title to be canceled: ";
@@ -216,7 +216,7 @@ void CancelOrder(CustomerList& customers) {
 }
 
 void PrintOrders(CustomerList& customers) {
-	cout << customers;
+    cout << customers;
 }
 
 void CheckoutOrders(CustomerList& customers) {
@@ -226,7 +226,7 @@ void CheckoutOrders(CustomerList& customers) {
     double total = 0;
 
     cout << "Enter customer name: ";
-    cin >> name;
+    getline(cin, name);
     cust = customers.getCustomerByName(name);
     subTotal = cust.checkoutOrders();
     total = subTotal + (subTotal * .07);
@@ -241,4 +241,5 @@ void CheckoutOrders(CustomerList& customers) {
 
 void UpdateDataFile(CustomerList& customers) {
 }
+
 
