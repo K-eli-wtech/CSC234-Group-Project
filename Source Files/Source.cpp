@@ -184,26 +184,26 @@ void PlaceOrder(CustomerList& customers) {
     cin.ignore();
     getline(cin, name);
 
-    if (customers.searchCustomerByName(name))
-    {
-	cust = customers.getCustomerByName(name);
-    }
-    else
-    {
-	    cerr << "Unknown Customer.\n";
-	    return;
-    }
-    cout << "Enter the book title: ";
-    cin.ignore();
-    getline(cin, b_title);
-    cout << "\nEnter the price of the book: ";
-    cin >> b_price;
-    cout << "\nEnter the number of books: ";
-    cin >> b_inv;
+    if (customers.SearchCustomerByName(name)) {
+        cust = customers.getCustomerByName(name);
+        /* The case in getCustomerByName where the customer *
+         * is not found needs to be handled gracefully or   *
+         * we will segfault here.                           */
+        cout << "Enter the book title: ";
+        cin.ignore();
+        getline(cin, b_title);
+        cout << "\nEnter the price of the book: ";
+        cin >> b_price;
+        cout << "\nEnter the number of books: ";
+        cin >> b_inv;
 
-    Order ord(b_title, b_price, b_inv);
-    cust.AddOrder(ord);
-    cout << "New order is added for customer " << cust.getCustomerName();
+        Order ord(b_title, b_price, b_inv);
+        cust.AddOrder(ord);
+        cout << "New order is added for customer " << cust.getCustomerName();
+    }
+    else {
+        cout << "This is not a valid customer" << endl;
+    }
 
 }
 
