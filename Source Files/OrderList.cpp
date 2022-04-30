@@ -80,5 +80,16 @@ void OrderList::UpdateDataFile(ofstream& out)
 
 void OrderList::SearchOrderList(string title, bool& found, nodeType<Order>*& current) const
 {
+	found = false;
 
+	current = first;
+
+	while (current != nullptr && !found) {
+		if (current->info.checkTitle(title)) {
+			found = true;
+		}
+		else {
+			current = current->link;
+		}
+	}
 }
