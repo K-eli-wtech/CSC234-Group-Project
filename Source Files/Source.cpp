@@ -135,6 +135,23 @@ bool is_numeric_string(string str)
     return true;
 }
 
+bool is_double_string(string str)
+{
+	bool seen_decimal = false;
+	int i = 0;
+	for (i = 0; i < str.length(); i++)
+	{
+		if (str[i] == '.' && !seen_decimal)
+		{
+			seen_decimal = true;
+		}
+		else if (!isdigit(str[i]))
+		{
+			return false;
+		}
+	}
+}
+
 int selectMenu() {
     string sel;
     cout << "Please select one of the following actions: " << endl;
