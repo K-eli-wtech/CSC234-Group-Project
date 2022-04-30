@@ -146,6 +146,9 @@ int selectMenu() {
 }
 
 void PlaceOrder(CustomerList& customers) {
+    /* It is necessary to use getline() to read cin like the inFile, *
+     * since we get the customer's name from cin, which is more than *
+     * one word.                                                     */
     string name, b_title;
     double b_price;
     int b_inv;
@@ -155,6 +158,9 @@ void PlaceOrder(CustomerList& customers) {
     cin >> name;
 
     cust = customers.getCustomerByName(name);
+    /* The case in getCustomerByName where the customer *
+     * is not found needs to be handled gracefully or   *
+     * we will segfault here.                           */
     cout << "Enter the book title: ";
     cin >> b_title;
     cout << "\nEnter the price of the book: ";

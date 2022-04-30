@@ -42,15 +42,16 @@ bool CustomerList::SearchCustomerByName(string name) const
 
 Customer CustomerList::getCustomerByName(string name) const
 {
-	linkedListIterator<Customer> i = linkedListIterator<Customer>(this->first);
-	for (;i!=nullptr;++i)
+	nodeType<Customer> * node;
+	for (node=this->first;node != nullptr;node=node->link)
 	{
-		if ((*i).getCustomerName() == name)
+		if (node->info.getCustomerName() == name)
 		{
-			return *i;
+			return node->info;
 		}
 	}
 	/* Are we supposed to throw if not found? */
+	/* If we do nothing if not found, it causes a segfault */
 	/* Paul: I think if it doesn't specify we should either have it send an error and recall the function or fail
 	   the program gracefully */ 
 }
