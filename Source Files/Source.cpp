@@ -39,7 +39,7 @@ int main() {
     if (!inFile) {
         string subFile;
         cout << "Failed to find the default file, please input file name." << endl;
-        cin >> subFile;
+	getline(cin, subFile);
         inFile.open(subFile);
     }
 
@@ -114,87 +114,99 @@ void LoadCustomers(ifstream& inFile, CustomerList& customers) {
             customers.AddCustomer(customer);
 
         }
-        cout << "All customers and orders are loaded." << endl;
-    }
-    catch (int)
-    {
-        cout << "Error Loading customers" << endl;
-    }
-}
-
-bool is_numeric_string(string str)
-{
-    int i = 0;
-    for (i = 0; i < str.length(); i++)
-    {
-        if (!isdigit(str[i]))
-        {
-            return false;
-        }
-    }
-    return true;
-}
-
-bool is_double_string(string str)
-{
-	bool seen_decimal = false;
-	int i = 0;
-	for (i = 0; i < str.length(); i++)
-	{
-		if (str[i] == '.' && !seen_decimal)
-		{
-			seen_decimal = true;
-		}
-		else if (!isdigit(str[i]))
-		{
-			return false;
-		}
+		cout << "All customers and orders are loaded." << endl;
+	    }
+	    catch (int)
+	    {
+		cout << "Error Loading customers" << endl;
+	    }
 	}
-	return true;
-}
 
-int selectMenu() {
-    string sel;
-    cout << "Please select one of the following actions: " << endl;
-    cout << "1: Place an order." << endl;
-    cout << "2: Update an order." << endl;
-    cout << "3: Cancel an order." << endl;
-    cout << "4: Print all orders." << endl;
-    cout << "5: Checkout Orders." << endl;
-    cout << "6: Exit \n" << endl;
-    getline(cin, sel);
-    if (!is_numeric_string(sel))
-    {
-        return -1;
-    }
-    return stoi(sel);
+	bool is_numeric_string(string str)
+	{
+	    int i = 0;
+	    for (i = 0; i < str.length(); i++)
+	    {
+		if (!isdigit(str[i]))
+		{
+		    return false;
+		}
+	    }
+	    return true;
+	}
 
-}
+	bool is_double_string(string str)
+	{
+		bool seen_decimal = false;
+		int i = 0;
+		for (i = 0; i < str.length(); i++)
+		{
+			if (str[i] == '.' && !seen_decimal)
+			{
+				seen_decimal = true;
+			}
+			else if (!isdigit(str[i]))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
-void PlaceOrder(CustomerList& customers) {
-    /* It is necessary to use getline() to read cin like the inFile, *
-     * since we get the customer's name from cin, which is more than *
-     * one word.                                                     */
-    string name, b_title;
-    double b_price;
-    int b_inv;
-    Customer cust;
+	int selectMenu() {
+	    string sel;
+	    cout << "Please select one of the following actions: " << endl;
+	    cout << "1: Place an order." << endl;
+	    cout << "2: Update an order." << endl;
+	    cout << "3: Cancel an order." << endl;
+	    cout << "4: Print all orders." << endl;
+	    cout << "5: Checkout Orders." << endl;
+	    cout << "6: Exit \n" << endl;
+	    getline(cin, sel);
+	    if (!is_numeric_string(sel))
+	    {
+		return -1;
+	    }
+	    return stoi(sel);
 
-    cout << "Enter customer name: ";
-    getline(cin, name);
+	}
 
-    if (customers.SearchCustomerByName(name)) {
-        cust = customers.getCustomerByName(name);
-        cout << "Existing customer." << endl;
-        /* The case in getCustomerByName where the customer *
-         * is not found needs to be handled gracefully or   *
-         * we will segfault here.                           */
-        cout << "Enter the book title: ";
-        getline(cin, b_title);
-        cout << "\nEnter the price of the book: ";
-        cin >> b_price;
+	void PlaceOrder(CustomerList& customers) {
+	    /* It is necessary to use getline() to read cin like the inFile, *
+	     * since we get the customer's name from cin, which is more than *
+	     * one word.                                                     */
+	    string name, b_title, price, inv;
+	    double b_price;
+	    int b_inv;
+	    Customer cust;
+
+	    cout << "Enter customer name: ";
+	    getline(cin, name);
+
+	    if (customers.SearchCustomerByName(name)) {
+		cust = customers.getCustomerByName(name);
+        	cout << "Existing customer." << endl;
+		/* The case in getCustomerByName where the customer *
+		 * is not found needs to be handled gracefully or   *
+		 * we will segfault here.                           */
+		cout << "Enter the book title: ";
+		getline(cin, b_title);
+		cout << "\nEnter the price of the book: ";
+		getline(cin, price);
+		if (!is_double_string(price))
+		{
+			cerr << "Invalid price input!\n";
+			return;
+		}
+		b_price = stod(price);
         cout << "\nEnter the number of books: ";
-        cin >> b_inv;
+	getline(cin, inv);
+	if (!is_numeric_string(inv))
+	{
+		cerr << "Invalid number of books!\n";
+		return;
+	}
+	b_inv = stoi(inv);
 
         Order ord(b_title, b_price, b_inv);
         cust.AddOrder(ord);
@@ -206,18 +218,23 @@ void PlaceOrder(CustomerList& customers) {
 }
 
 void UpdateOrder(CustomerList& customers) {
-    string name, b_title;
+    string name, b_title, inv;
     int b_inv;
     Customer cust;
     cout << "Enter customer name: ";
-    cin.ignore();
     getline(cin, name);
 
     cust = customers.getCustomerByName(name);
     cout << "Enter the book title to be updated: ";
-    cin >> b_title;
+    getline(cin, b_title);
     cout << "\nEnter the number of book to be updated: ";
-    cin >> b_inv;
+    getline(cin, inv);
+    if (!is_numeric_string(inv))
+    {
+	    cerr << "Invalid number of books!\n";
+	    return;
+    }
+    b_inv = stoi(inv);
 
     //OrderList::SearchOrderList() to retrieve order by name if this doesnt work
     cust.UpdateOrders(b_title, b_inv);
@@ -229,12 +246,11 @@ void CancelOrder(CustomerList& customers) {
     string name, title;
     Customer cust;
     cout << "Enter customer name: ";
-    cin.ignore();
     getline(cin, name);
     cust = customers.getCustomerByName(name);
 
     cout << "Enter the book title to be canceled: ";
-    cin >> title;
+    getline(cin, title);
 
     cust.CancelOrder(title);
 
@@ -251,7 +267,6 @@ void CheckoutOrders(CustomerList& customers) {
     double total = 0;
 
     cout << "Enter customer name: ";
-    cin.ignore();
     getline(cin, name);
     cust = customers.getCustomerByName(name);
     subTotal = cust.checkoutOrders();

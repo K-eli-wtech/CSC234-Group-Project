@@ -17,7 +17,7 @@ using namespace std;
 
 
 ostream& operator<<(ostream& out, const Customer& customer) {
-    out << "***************************************************************************************************\n";
+    out << "\n***************************************************************************************************\n";
     out << "Name:      " << customer.name << '\n';
     out << "Address:   " << customer.address << '\n';
     out << "Email:    " << customer.email << '\n';
