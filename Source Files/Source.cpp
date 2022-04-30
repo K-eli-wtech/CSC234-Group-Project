@@ -202,7 +202,7 @@ void CancelOrder(CustomerList& customers) {
 }
 
 void PrintOrders(CustomerList& customers) {
-    cout << customers << endl;
+	cout << customers;
 }
 
 void CheckoutOrders(CustomerList& customers) {

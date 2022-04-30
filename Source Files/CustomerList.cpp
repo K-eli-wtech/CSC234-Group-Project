@@ -24,6 +24,7 @@ ostream& operator<<(ostream& out, const CustomerList& customers)
 	{
 		out << *i;
 	}
+	out << "***************************************************************************************************\n\n";
 	return out;
 }
 
