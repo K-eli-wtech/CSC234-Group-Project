@@ -374,4 +374,5 @@ void UpdateDataFile(CustomerList& customers)
 	ofstream inFile;
 	inFile.open("BookOrders.txt");
 	clist.UpdateDataFile(inFile);
+	inFile.close();
 }
