@@ -13,8 +13,8 @@
 
 #include <iostream>
 #include <string>
-#include "linkedList.h"
-#include "Order.h"
+#include "linkedList.hpp"
+#include "Order.hpp"
 
 using namespace std;
 
