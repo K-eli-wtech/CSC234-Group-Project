@@ -319,21 +319,15 @@ void CancelOrder(CustomerList& customers)
 	cust = customers.getCustomerByName(name);
 	OrderList orders;
 	orders = cust.getOrders();
-	string x = "";
 
 	cout << "Enter the book title to be canceled: ";
 	getline(cin, title);
 
 	if (customers.SearchCustomerByName(name))
 	{
-		if (x == "")
-		{
-			cust.CancelOrder(title);
-			cout << "The order is canceled.";
-		}
-		else {
-			cout << "Book not found";
-		}
+		cust.CancelOrder(title);
+		customers.UpdateCustomer(cust);
+		cout << "The order is canceled.";
 	}
 	else {
 		cout << "Customer does not exist.\n" << endl;
