@@ -57,12 +57,15 @@ int main()
 		{
 		case 1:
 			PlaceOrder(customers);
+			UpdateDataFile(customers);
 			break;
 		case 2:
 			UpdateOrder(customers);
+			UpdateDataFile(customers);
 			break;
 		case 3:
 			CancelOrder(customers);
+			UpdateDataFile(customers);
 			break;
 		case 4:
 			PrintOrders(customers);
@@ -224,7 +227,6 @@ void PlaceOrder(CustomerList& customers)
 			// This isn't adding orders for existing customers but it does work below in the else statement for new customers
 			Order ord(b_title, b_price, b_inv);
 			cust.AddOrder(ord);
-			UpdateDataFile(customers);
 
 			cout << "New order is added for customer " << cust.getCustomerName() << endl;
 			cout << "\nPlace another order (y or n)? ";
@@ -265,7 +267,6 @@ void PlaceOrder(CustomerList& customers)
 
 			Customer ncust(name, address, email, orders);
 			customers.AddCustomer(ncust);
-			UpdateDataFile(customers);
 
 			cout << "New order is added for customer " << ncust.getCustomerName() << endl;
 			cout << "\nPlace another order (y or n)? ";
@@ -292,18 +293,17 @@ void UpdateOrder(CustomerList& customers)
 		cout << "Enter the book title to be updated: ";
 		getline(cin, b_title);
 		cout << "Enter the number of book to be updated : ";
-	getline(cin, inv);
-	while (!is_numeric_string(inv))
-	{
-		 cerr << "Invalid input!\n";
-			 cout << "Enter the number of books: ";
 		getline(cin, inv);
+		while (!is_numeric_string(inv))
+		{
+			 cerr << "Invalid input!\n";
+			 cout << "Enter the number of books: ";
+			getline(cin, inv);
 		}
 		b_inv = stoi(inv);
 
-		//OrderList::SearchOrderList() to retrieve order by name if this doesnt work
 		cust.UpdateOrders(b_title, b_inv);
-		UpdateDataFile(customers);
+		customers.UpdateCustomer(cust);
 	}
 	else {
 		cout << "Customer does not exist.\n" << endl;
@@ -329,7 +329,6 @@ void CancelOrder(CustomerList& customers)
 		if (x == "")
 		{
 			cust.CancelOrder(title);
-			UpdateDataFile(customers);
 			cout << "The order is canceled.";
 		}
 		else {
@@ -369,10 +368,8 @@ void CheckoutOrders(CustomerList& customers)
 
 void UpdateDataFile(CustomerList& customers)
 {
-	CustomerList clist;
-	clist = customers;
 	ofstream inFile;
 	inFile.open("BookOrders.txt");
-	clist.UpdateDataFile(inFile);
+	customers.UpdateDataFile(inFile);
 	inFile.close();
 }
