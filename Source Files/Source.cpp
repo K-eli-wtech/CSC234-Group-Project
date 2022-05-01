@@ -313,11 +313,10 @@ void CancelOrder(CustomerList& customers)
 	OrderList orders;
 	orders = cust.getOrders();
 
-	cout << "Enter the book title to be canceled: ";
-	getline(cin, title);
-
 	if (customers.SearchCustomerByName(name))
 	{
+		cout << "Enter the book title to be canceled: ";
+		getline(cin, title);
 		cust.CancelOrder(title);
 		customers.UpdateCustomer(cust);
 		cout << "The order is canceled.\n";
