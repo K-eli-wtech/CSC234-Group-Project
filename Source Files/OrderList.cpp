@@ -40,12 +40,10 @@ void OrderList::UpdateOrder(string title, int number)
 		if (node->info.getTitle() == title)
 		{
 			node->info.setNumber(number);
-		}
-		else
-		{
-			cout << "Title could not be found." << endl;
+			return;
 		}
 	}
+	cout << "Title could not be found." << endl;
 }
 
 void OrderList::CancelOrder(string title)
