@@ -34,14 +34,14 @@ int main() {
 
     cout << "Welcome to Wake Bookstore!" << endl;
 
+    string filename = "BookOrders.txt"
     ifstream inFile;
-    inFile.open("BookOrders.txt");
+    inFile.open(filename);
 
-    if (!inFile) {
-        string subFile;
+    while (!inFile) {
         cout << "Failed to find the default file, please input file name." << endl;
-        cin >> subFile;
-        inFile.open(subFile);
+	getline(cin, filename);
+        inFile.open(filename);
     }
 
     LoadCustomers(inFile, customers);
@@ -134,7 +134,7 @@ bool is_numeric_string(string str)
             return false;
         }
     }
-    return true;
+    return str.length() > 0 ? true : false;
 }
 
 bool is_double_string(string str)
@@ -152,6 +152,7 @@ bool is_double_string(string str)
             return false;
         }
     }
+    return str.length() > 0 ? true : false;
 }
 
 int selectMenu() {
