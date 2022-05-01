@@ -54,8 +54,10 @@ void OrderList::CancelOrder(string title)
 		if (node->info.getTitle() == title)
 		{
 			linkedListType::deleteNode(node->info);
+			return;
 		}
 	}
+	cout << "Title could not be found.\n";
 }
 
 double OrderList::CalculateSubtotal()

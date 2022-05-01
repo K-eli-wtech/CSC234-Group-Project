@@ -224,12 +224,13 @@ void PlaceOrder(CustomerList& customers)
 		}
 		b_inv = stoi(inv);
 
-			// This isn't adding orders for existing customers but it does work below in the else statement for new customers
-			Order ord(b_title, b_price, b_inv);
-			cust.AddOrder(ord);
+		// This isn't adding orders for existing customers but it does work below in the else statement for new customers
+		Order ord(b_title, b_price, b_inv);
+		cust.AddOrder(ord);
+		customers.UpdateCustomer(cust);
 
-			cout << "New order is added for customer " << cust.getCustomerName() << endl;
-			cout << "\nPlace another order (y or n)? ";
+		cout << "New order is added for customer " << cust.getCustomerName() << endl;
+		cout << "\nPlace another order (y or n)? ";
 		getline(cin, loop);
 			transform(loop.begin(), loop.end(), loop.begin(), ::toupper);
 			
@@ -327,7 +328,7 @@ void CancelOrder(CustomerList& customers)
 	{
 		cust.CancelOrder(title);
 		customers.UpdateCustomer(cust);
-		cout << "The order is canceled.";
+		cout << "The order is canceled.\n";
 	}
 	else {
 		cout << "Customer does not exist.\n" << endl;
