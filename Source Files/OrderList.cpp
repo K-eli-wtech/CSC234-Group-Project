@@ -78,7 +78,7 @@ void OrderList::UpdateDataFile(ofstream& out)
 	}
 }
 
-void OrderList::SearchOrderList(string title, bool& found, nodeType<Order>*& current) const
+void OrderList::SearchOrderList(string title, bool& found, nodeType<Order>* &current) const
 {
 	found = false;
 

@@ -45,6 +45,7 @@ int main() {
     }
 
     LoadCustomers(inFile, customers);
+    inFile.close();
 
     while (1)
     {
@@ -185,6 +186,8 @@ void PlaceOrder(CustomerList& customers) {
         getline(cin, name);
 
         if (customers.SearchCustomerByName(name)) {
+            Customer cust;
+            cust = customers.getCustomerByName(name);
             cout << "Existing customer." << endl;
             cout << "Enter the book title: ";
             getline(cin, b_title);
@@ -195,10 +198,8 @@ void PlaceOrder(CustomerList& customers) {
 
             // This isn't adding orders for existing customers but it does work below in the else statement for new customers
             Order ord(b_title, b_price, b_inv);
-
-            Customer cust;
-            cust = customers.getCustomerByName(name);
             cust.AddOrder(ord);
+            UpdateDataFile(customers);
 
             cout << "New order is added for customer " << cust.getCustomerName() << endl;
             cout << "\nPlace another order (y or n)? ";
@@ -226,6 +227,7 @@ void PlaceOrder(CustomerList& customers) {
 
             Customer ncust(name, address, email, orders);
             customers.AddCustomer(ncust);
+            UpdateDataFile(customers);
 
             cout << "New order is added for customer " << ncust.getCustomerName() << endl;
             cout << "\nPlace another order (y or n)? ";
@@ -255,9 +257,12 @@ void UpdateOrder(CustomerList& customers) {
 
         //OrderList::SearchOrderList() to retrieve order by name if this doesnt work
         cust.UpdateOrders(b_title, b_inv);
+        UpdateDataFile(customers);
+        cin.ignore();
     }
     else {
-        cout << "Customer does not exist." << endl;
+        cout << "Customer does not exist.\n" << endl;
+        cin.ignore();
     }
 }
 
@@ -267,16 +272,27 @@ void CancelOrder(CustomerList& customers) {
     cout << "Enter customer name: ";
     getline(cin, name);
     cust = customers.getCustomerByName(name);
+    OrderList orders;
+    orders = cust.getOrders();
+    string x = "";
 
     cout << "Enter the book title to be canceled: ";
     getline(cin, title);
 
-    if (getline(cin, title)) {
-        cust.CancelOrder(title);
-        cout << "The order is canceled.\n" << endl;
+    if (customers.SearchCustomerByName(name)) {
+        if (x == "") {
+            cust.CancelOrder(title);
+            UpdateDataFile(customers);
+            cout << "The order is canceled.";
+        }
+        else {
+            cout << "Book not found";
+        }
+        cin.ignore();
     }
     else {
-        cout << "Book not found\n" << endl;
+        cout << "Customer does not exist.\n" << endl;
+        cin.ignore();
     }
 }
 
@@ -305,5 +321,9 @@ void CheckoutOrders(CustomerList& customers) {
 }
 
 void UpdateDataFile(CustomerList& customers) {
-    
+    CustomerList clist;
+    clist = customers;
+    ofstream inFile;
+    inFile.open("BookOrders.txt");
+    clist.UpdateDataFile(inFile);
 }

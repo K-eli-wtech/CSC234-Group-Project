@@ -38,9 +38,9 @@ Order::Order(string book, double price, int quantity)
 	number = quantity;
 }
 
-bool Order::checkTitle(string name)
+bool Order::checkTitle(string title)
 {
-	return (bookTitle == name);
+	return bookTitle == title;
 }
 
 double Order::CalculatorCost()
