@@ -42,7 +42,7 @@ int main()
 	while (!inFile)
 	{
 		cout << "Failed to find the default file, please input file name." << endl;
-	getline(cin, filename);
+		getline(cin, filename);
 		inFile.open(filename);
 	}
 
@@ -81,11 +81,11 @@ int main()
 		}
 	}
 	return 0;
+
 }
 
 void LoadCustomers(ifstream& inFile, CustomerList& customers)
 {
-	// Put a try catch block for "customers loaded" output
 	string line;
 	getline(inFile, line);
 	try
@@ -179,15 +179,10 @@ int selectMenu()
 		return -1;
 	}
 	return stoi(sel);
-
 }
 
 void PlaceOrder(CustomerList& customers)
 {
-	/* It is necessary to use getline() to read cin like the inFile, *
-		 * since we get the customer's name from cin, which is more than *
-		 * one word.	*/
-	// Changed it to cin because you can't add the order with price and inv as strings
 	string name, b_title, address, email, loop = "YES";
 	string price, inv;
 	double b_price;
@@ -206,34 +201,33 @@ void PlaceOrder(CustomerList& customers)
 			cout << "Enter the book title: ";
 			getline(cin, b_title);
 			cout << "Enter the price of the book: ";
-		getline(cin, price);
-		while (!is_double_string(price))
-		{
-			cerr << "Invalid input!\n";
-					cout << "Enter the price of the book: ";
 			getline(cin, price);
-		}
-		b_price = stod(price);
+			while (!is_double_string(price))
+			{
+				cerr << "Invalid input!\n";
+				cout << "Enter the price of the book: ";
+				getline(cin, price);
+			}
+			b_price = stod(price);
 			cout << "Enter the number of books: ";
-		getline(cin, inv);
-		while (!is_numeric_string(inv))
-		{
-			cerr << "Invalid input!\n";
-					cout << "Enter the number of books: ";
 			getline(cin, inv);
-		}
-		b_inv = stoi(inv);
+			while (!is_numeric_string(inv))
+			{
+				cerr << "Invalid input!\n";
+				cout << "Enter the number of books: ";
+				getline(cin, inv);
+			}
+			b_inv = stoi(inv);
 
-		// This isn't adding orders for existing customers but it does work below in the else statement for new customers
-		Order ord(b_title, b_price, b_inv);
-		cust.AddOrder(ord);
-		customers.UpdateCustomer(cust);
+			Order ord(b_title, b_price, b_inv);
+			cust.AddOrder(ord);
+			customers.UpdateCustomer(cust);
 
-		cout << "New order is added for customer " << cust.getCustomerName() << endl;
-		cout << "\nPlace another order (y or n)? ";
-		getline(cin, loop);
+			cout << "New order is added for customer " << cust.getCustomerName() << endl;
+			cout << "\nPlace another order (y or n)? ";
+			getline(cin, loop);
 			transform(loop.begin(), loop.end(), loop.begin(), ::toupper);
-			
+
 		}
 		else {
 			cout << "New Customer." << endl;
@@ -244,39 +238,38 @@ void PlaceOrder(CustomerList& customers)
 			cout << "Enter the book title: ";
 			getline(cin, b_title);
 			cout << "Enter the price of the book: ";
-		getline(cin, price);
-		while (!is_double_string(price))
-		{
-			cerr << "Invalid input!\n";
-					cout << "Enter the price of the book: ";
 			getline(cin, price);
-		}
-		b_price = stod(price);
+
+			while (!is_double_string(price))
+			{
+				cerr << "Invalid input!\n";
+				cout << "Enter the price of the book: ";
+				getline(cin, price);
+			}
+
+			b_price = stod(price);
 			cout << "Enter the number of books: ";
-		getline(cin, inv);
-		while (!is_numeric_string(inv))
-		{
-			cerr << "Invalid input!\n";
-					cout << "Enter the number of books: ";
 			getline(cin, inv);
-		}
-		b_inv = stoi(inv);
+
+			while (!is_numeric_string(inv))
+			{
+				cerr << "Invalid input!\n";
+				cout << "Enter the number of books: ";
+				getline(cin, inv);
+			}
+			b_inv = stoi(inv);
 
 			OrderList orders;
 			Order ord(b_title, b_price, b_inv);
 			orders.AddOrder(ord);
-
 			Customer ncust(name, address, email, orders);
 			customers.AddCustomer(ncust);
 
 			cout << "New order is added for customer " << ncust.getCustomerName() << endl;
 			cout << "\nPlace another order (y or n)? ";
-		getline(cin, loop);
+			getline(cin, loop);
 			transform(loop.begin(), loop.end(), loop.begin(), ::toupper);
-			
 		}
-
-		
 	}
 }
 
@@ -297,8 +290,8 @@ void UpdateOrder(CustomerList& customers)
 		getline(cin, inv);
 		while (!is_numeric_string(inv))
 		{
-			 cerr << "Invalid input!\n";
-			 cout << "Enter the number of books: ";
+			cerr << "Invalid input!\n";
+			cout << "Enter the number of books: ";
 			getline(cin, inv);
 		}
 		b_inv = stoi(inv);
@@ -306,7 +299,8 @@ void UpdateOrder(CustomerList& customers)
 		cust.UpdateOrders(b_title, b_inv);
 		customers.UpdateCustomer(cust);
 	}
-	else {
+	else
+	{
 		cout << "Customer does not exist.\n" << endl;
 	}
 }
@@ -353,12 +347,10 @@ void CheckoutOrders(CustomerList& customers)
 	subTotal = cust.checkoutOrders();
 	total = subTotal + (subTotal * .07);
 
-
 	cout << cust << endl;
 	cout << "Subtotal:              $" << subTotal << '\n';
 	cout << "Tax:                   $" << subTotal * .07 << '\n';
 	cout << "Total payment:         $" << total << '\n';
-
 }
 
 void UpdateDataFile(CustomerList& customers)
