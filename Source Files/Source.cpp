@@ -229,7 +229,8 @@ void PlaceOrder(CustomerList& customers)
 			transform(loop.begin(), loop.end(), loop.begin(), ::toupper);
 
 		}
-		else {
+		else
+		{
 			cout << "New Customer." << endl;
 			cout << "Enter customer address: ";
 			getline(cin, address);
@@ -239,18 +240,15 @@ void PlaceOrder(CustomerList& customers)
 			getline(cin, b_title);
 			cout << "Enter the price of the book: ";
 			getline(cin, price);
-
 			while (!is_double_string(price))
 			{
 				cerr << "Invalid input!\n";
 				cout << "Enter the price of the book: ";
 				getline(cin, price);
 			}
-
 			b_price = stod(price);
 			cout << "Enter the number of books: ";
 			getline(cin, inv);
-
 			while (!is_numeric_string(inv))
 			{
 				cerr << "Invalid input!\n";
@@ -324,7 +322,8 @@ void CancelOrder(CustomerList& customers)
 		customers.UpdateCustomer(cust);
 		cout << "The order is canceled.\n";
 	}
-	else {
+	else
+	{
 		cout << "Customer does not exist.\n" << endl;
 	}
 }
