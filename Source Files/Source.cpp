@@ -34,7 +34,7 @@ int main() {
 
     cout << "Welcome to Wake Bookstore!" << endl;
 
-    string filename = "BookOrders.txt"
+    string filename = "BookOrders.txt";
     ifstream inFile;
     inFile.open(filename);
 
@@ -179,6 +179,7 @@ void PlaceOrder(CustomerList& customers) {
          * one word.    */
     // Changed it to cin because you can't add the order with price and inv as strings
     string name, b_title, address, email, loop = "YES";
+    string price, inv;
     double b_price;
     int b_inv;
 
@@ -193,9 +194,23 @@ void PlaceOrder(CustomerList& customers) {
             cout << "Enter the book title: ";
             getline(cin, b_title);
             cout << "Enter the price of the book: ";
-            cin >> b_price;
+	    getline(cin, price);
+	    while (!is_double_string(price))
+	    {
+		    cerr << "Invalid input!\n";
+                    cout << "Enter the price of the book: ";
+		    getline(cin, price);
+	    }
+	    b_price = stod(price);
             cout << "Enter the number of books: ";
-            cin >> b_inv;
+	    getline(cin, inv);
+	    while (!is_numeric_string(inv))
+	    {
+		    cerr << "Invalid input!\n";
+                    cout << "Enter the number of books: ";
+		    getline(cin, inv);
+	    }
+	    b_inv = stoi(inv);
 
             // This isn't adding orders for existing customers but it does work below in the else statement for new customers
             Order ord(b_title, b_price, b_inv);
@@ -204,9 +219,8 @@ void PlaceOrder(CustomerList& customers) {
 
             cout << "New order is added for customer " << cust.getCustomerName() << endl;
             cout << "\nPlace another order (y or n)? ";
-            cin >> loop;
+	    getline(cin, loop);
             transform(loop.begin(), loop.end(), loop.begin(), ::toupper);
-            cin.ignore();
             
         }
         else {
@@ -218,9 +232,23 @@ void PlaceOrder(CustomerList& customers) {
             cout << "Enter the book title: ";
             getline(cin, b_title);
             cout << "Enter the price of the book: ";
-            cin >> b_price;
+	    getline(cin, price);
+	    while (!is_double_string(price))
+	    {
+		    cerr << "Invalid input!\n";
+                    cout << "Enter the price of the book: ";
+		    getline(cin, price);
+	    }
+	    b_price = stod(price);
             cout << "Enter the number of books: ";
-            cin >> b_inv;
+	    getline(cin, inv);
+	    while (!is_numeric_string(inv))
+	    {
+		    cerr << "Invalid input!\n";
+                    cout << "Enter the number of books: ";
+		    getline(cin, inv);
+	    }
+	    b_inv = stoi(inv);
 
             OrderList orders;
             Order ord(b_title, b_price, b_inv);
@@ -232,9 +260,8 @@ void PlaceOrder(CustomerList& customers) {
 
             cout << "New order is added for customer " << ncust.getCustomerName() << endl;
             cout << "\nPlace another order (y or n)? ";
-            cin >> loop;
+	    getline(cin, loop);
             transform(loop.begin(), loop.end(), loop.begin(), ::toupper);
-            cin.ignore();
             
         }
 
@@ -243,7 +270,7 @@ void PlaceOrder(CustomerList& customers) {
 }
 
 void UpdateOrder(CustomerList& customers) {
-    string name, b_title;
+    string name, b_title, inv;
     int b_inv;
     Customer cust;
     cout << "Enter customer name: ";
@@ -254,16 +281,21 @@ void UpdateOrder(CustomerList& customers) {
         cout << "Enter the book title to be updated: ";
         getline(cin, b_title);
         cout << "Enter the number of book to be updated : ";
-        cin >> b_inv;
+	getline(cin, inv);
+	while (!is_numeric_string(inv))
+	{
+	     cerr << "Invalid input!\n";
+             cout << "Enter the number of books: ";
+	    getline(cin, inv);
+        }
+        b_inv = stoi(inv);
 
         //OrderList::SearchOrderList() to retrieve order by name if this doesnt work
         cust.UpdateOrders(b_title, b_inv);
         UpdateDataFile(customers);
-        cin.ignore();
     }
     else {
         cout << "Customer does not exist.\n" << endl;
-        cin.ignore();
     }
 }
 
@@ -289,11 +321,9 @@ void CancelOrder(CustomerList& customers) {
         else {
             cout << "Book not found";
         }
-        cin.ignore();
     }
     else {
         cout << "Customer does not exist.\n" << endl;
-        cin.ignore();
     }
 }
 
