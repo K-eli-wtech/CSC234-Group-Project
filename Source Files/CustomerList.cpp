@@ -58,18 +58,11 @@ Customer CustomerList::getCustomerByName(string name) const
 	}
 	/* Return this to keep from errors/warnings */
 	return dont_error;
-	/* If we do nothing if not found, it causes a segfault */
-	/* Paul: I think if it doesn't specify we should either have *
-	 * it send an error and recall the function or fail the      *
-	 * program gracefully                                        */
 }
 
 void CustomerList::UpdateCustomer(Customer& updated)
 {
-	/* Assuming we're supposed to find the customer *
-	 * by name and update that record with what     *
-	 * we're passed in our argument.                */
-	 // Paul: That was how I understood it
+	/* We only update the customer if it already exists */
 	nodeType<Customer>* node;
 	for (node = this->first; node != nullptr; node = node->link)
 	{
@@ -79,7 +72,6 @@ void CustomerList::UpdateCustomer(Customer& updated)
 			return;
 		}
 	}
-	/* Throw error if customer doesn't exist? Add to list? */
 }
 
 void CustomerList::UpdateDataFile(ofstream& out)
