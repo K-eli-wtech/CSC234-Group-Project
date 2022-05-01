@@ -19,7 +19,7 @@ using namespace std;
 
 ostream& operator<<(ostream& out, const OrderList& orders) 
 {
-    linkedListIterator<Order> i = linkedListIterator<Order>(orders.first);
+	linkedListIterator<Order> i = linkedListIterator<Order>(orders.first);
 	for (;i!=nullptr;++i)
 	{
 		out << *i;
@@ -34,12 +34,15 @@ void OrderList::AddOrder(Order& order)
 
 void OrderList::UpdateOrder(string title, int number)
 {
-    nodeType<Order> *node;
+	nodeType<Order> *node;
 	for (node=this->first;node != nullptr;node=node->link)
 	{
-		if (node->info.getTitle() == title)	{
+		if (node->info.getTitle() == title)
+		{
 			node->info.setNumber(number);
-		} else {
+		}
+		else
+		{
 			cout << "Title could not be found." << endl;
 		}
 	}
@@ -50,7 +53,8 @@ void OrderList::CancelOrder(string title)
 	nodeType<Order> *node;
 	for (node=this->first;node!=nullptr;node=node->link)
 	{
-		if (node->info.getTitle() == title)	{
+		if (node->info.getTitle() == title)
+		{
 			linkedListType::deleteNode(node->info);
 		}
 	}
@@ -69,7 +73,7 @@ double OrderList::CalculateSubtotal()
 
 void OrderList::UpdateDataFile(ofstream& out)
 {
-    linkedListIterator<Order> i = linkedListIterator<Order>(this->first);
+	linkedListIterator<Order> i = linkedListIterator<Order>(this->first);
 	for (;i!=nullptr;++i)
 	{
 		out << (*i).getTitle() << "\n";
@@ -84,11 +88,14 @@ void OrderList::SearchOrderList(string title, bool& found, nodeType<Order>* &cur
 
 	current = first;
 
-	while (current != nullptr && !found) {
-		if (current->info.checkTitle(title)) {
+	while (current != nullptr && !found)
+	{
+		if (current->info.checkTitle(title))
+		{
 			found = true;
 		}
-		else {
+		else
+		{
 			current = current->link;
 		}
 	}

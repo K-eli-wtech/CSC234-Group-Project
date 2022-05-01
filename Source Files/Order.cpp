@@ -18,8 +18,8 @@ using namespace std;
 
 ostream& operator<<(ostream& out, const Order& order)
 {
-	out << "Title: " << setw(20) << order.bookTitle << "\n";
-	out << "Unit Price: " << setw(20) << order.unitPrice << "\n";
+	out << "Title: " << setw(20) << order.bookTitle << '\n';
+	out << "Unit Price: " << setw(20) << order.unitPrice << '\n';
 	out << "Number: " << setw(20) << order.number << endl;
 	return out;
 }
@@ -77,7 +77,10 @@ bool Order::operator==(const Order& right) const
 	);
 }
 
-bool Order::operator!=(const Order& right) const  {
-    return (bookTitle != right.bookTitle || unitPrice != right.unitPrice
-    || number != right.number);
+bool Order::operator!=(const Order& right) const
+{
+	return (
+		bookTitle != right.bookTitle || unitPrice != right.unitPrice
+		|| number != right.number
+	);
 }

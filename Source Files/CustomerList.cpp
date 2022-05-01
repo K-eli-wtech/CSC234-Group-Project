@@ -70,7 +70,8 @@ void CustomerList::UpdateCustomer(Customer& updated)
 	nodeType<Customer>* node;
 	for (node = this->first; node != nullptr; node = node->link)
 	{
-		if (node->info == updated) {
+		if (node->info == updated)
+		{
 			node->info = updated;
 			return;
 		}
