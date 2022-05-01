@@ -48,6 +48,7 @@ bool CustomerList::SearchCustomerByName(string name) const
 Customer CustomerList::getCustomerByName(string name) const
 {
 	nodeType<Customer>* node;
+	Customer dont_error;
 	for (node = this->first; node != nullptr; node = node->link)
 	{
 		if (node->info.getCustomerName() == name)
@@ -55,10 +56,12 @@ Customer CustomerList::getCustomerByName(string name) const
 			return node->info;
 		}
 	}
-	/* Are we supposed to throw if not found? */
+	/* Return this to keep from errors/warnings */
+	return dont_error;
 	/* If we do nothing if not found, it causes a segfault */
-	/* Paul: I think if it doesn't specify we should either have it send an error and recall the function or fail
-	   the program gracefully */
+	/* Paul: I think if it doesn't specify we should either have *
+	 * it send an error and recall the function or fail the      *
+	 * program gracefully                                        */
 }
 
 void CustomerList::UpdateCustomer(Customer& updated)
